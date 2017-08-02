@@ -15,6 +15,7 @@
 		4475941A1F3249D300EAFB47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447594181F3249D300EAFB47 /* LaunchScreen.storyboard */; };
 		447594251F3249D300EAFB47 /* JSContactBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 447594241F3249D300EAFB47 /* JSContactBookTests.m */; };
 		447594301F3249D300EAFB47 /* JSContactBookUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4475942F1F3249D300EAFB47 /* JSContactBookUITests.m */; };
+		447594451F324F4100EAFB47 /* ContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 447594441F324F4100EAFB47 /* ContactManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		4475942B1F3249D300EAFB47 /* JSContactBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSContactBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4475942F1F3249D300EAFB47 /* JSContactBookUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSContactBookUITests.m; sourceTree = "<group>"; };
 		447594311F3249D300EAFB47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		447594431F324F4100EAFB47 /* ContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactManager.h; sourceTree = "<group>"; };
+		447594441F324F4100EAFB47 /* ContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,7 @@
 				4475940E1F3249D300EAFB47 /* AppDelegate.m */,
 				447594101F3249D300EAFB47 /* ViewController.h */,
 				447594111F3249D300EAFB47 /* ViewController.m */,
+				447594421F324F4100EAFB47 /* ContactManager */,
 				447594131F3249D300EAFB47 /* Main.storyboard */,
 				447594161F3249D300EAFB47 /* Assets.xcassets */,
 				447594181F3249D300EAFB47 /* LaunchScreen.storyboard */,
@@ -138,6 +142,15 @@
 				447594311F3249D300EAFB47 /* Info.plist */,
 			);
 			path = JSContactBookUITests;
+			sourceTree = "<group>";
+		};
+		447594421F324F4100EAFB47 /* ContactManager */ = {
+			isa = PBXGroup;
+			children = (
+				447594431F324F4100EAFB47 /* ContactManager.h */,
+				447594441F324F4100EAFB47 /* ContactManager.m */,
+			);
+			path = ContactManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +288,7 @@
 			files = (
 				447594121F3249D300EAFB47 /* ViewController.m in Sources */,
 				4475940F1F3249D300EAFB47 /* AppDelegate.m in Sources */,
+				447594451F324F4100EAFB47 /* ContactManager.m in Sources */,
 				4475940C1F3249D300EAFB47 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +523,7 @@
 				447594361F3249D300EAFB47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		447594371F3249D300EAFB47 /* Build configuration list for PBXNativeTarget "JSContactBookTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +532,7 @@
 				447594391F3249D300EAFB47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4475943A1F3249D300EAFB47 /* Build configuration list for PBXNativeTarget "JSContactBookUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +541,7 @@
 				4475943C1F3249D300EAFB47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

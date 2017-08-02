@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "ContactManager.h"
+
 @interface ViewController ()
 
 @end
@@ -17,6 +19,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+
+    [[ContactManager sharedContactManager] requestContactManagerWithCompletion:^(BOOL success, NSError *error) {
+       
+        if (success) {
+            NSLog(@"Access granted...");
+            
+            [[ContactManager sharedContactManager] fetchContactsWithCompletion:^(NSArray *arrayContacts, NSError *error) {
+               
+                NSLog(@"%@",arrayContacts);
+                
+            }];
+            
+        }
+        else
+        {
+            NSLog(@"No access...");
+        }
+        
+    }];
 }
 
 
