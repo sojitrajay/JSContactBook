@@ -27,38 +27,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cnContactStoreDidChange:)
+                                                 name:CNContactStoreDidChangeNotification
+                                               object:nil];
+}
 
-    arrayContact = [[NSMutableArray alloc] init];
-    
-    [[ContactManager sharedContactManager] requestContactManagerWithCompletion:^(BOOL success, NSError *error) {
-       
-        if (success) {
-            NSLog(@"Access granted...");
-            
-            [[ContactManager sharedContactManager] fetchContactsWithCompletion:^(NSArray *arrayContacts, NSError *error) {
-               
-                arrayContact = [arrayContacts mutableCopy];
-                NSLog(@"%@",arrayContacts);
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                });
-                
-            }];
-            
-        }
-        else
-        {
-            NSLog(@"No access...");
-        }
-        
-    }];
-    
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadContacts];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CNContactStoreDidChangeNotification object:nil];
 }
 
 #pragma mark - Table View Data Source Methods
@@ -78,6 +67,11 @@
 
         // Set name
         [cell.labelContactName setAttributedText:contact.displayName];
+
+//      Used to display name using CNContactFormatter in application. But it doesn't display same as iOS contact book.
+//        CNContactFormatter *formatter = [[CNContactFormatter alloc] init];
+//        formatter.style = CNContactFormatterStylePhoneticFullName;
+//        [cell.labelContactName setText:[formatter stringFromContact:contact]];
         
         // Set image
         if (contact.imageData!=nil && contact.thumbnailImageData!=nil) {
@@ -96,6 +90,48 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     return cell;
+}
+    
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [arrayContact removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
+#pragma mark - Load Contacts
+
+-(void)loadContacts
+{
+    arrayContact = [[NSMutableArray alloc] init];
+    [[ContactManager sharedContactManager] requestContactManagerWithCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            [[ContactManager sharedContactManager] fetchContactsWithCompletion:^(NSArray *arrayContacts, NSError *error) {
+                
+                arrayContact = [arrayContacts mutableCopy];
+                NSLog(@"%@",arrayContacts);
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
+                
+            }];
+            
+        }
+        else
+        {
+            NSLog(@"No access to contacts...");
+        }
+    }];
+}
+
+-(IBAction)cnContactStoreDidChange:(id)sender
+{
+    [self loadContacts];
 }
 
 @end
