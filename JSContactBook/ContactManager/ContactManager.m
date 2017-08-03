@@ -134,4 +134,22 @@
     }
 }
 
+/**
+ *  @author Jayesh Sojitra
+ *
+ *  This method is used to add contact from the application to device.
+ *
+ */
+- (void)addContact:(CNMutableContact*)mutableContact withCompletion:(JSContactManagerUpdateContactsCompletion)completion
+{
+    CNSaveRequest *request = [[CNSaveRequest alloc] init];
+    [request addContact:mutableContact toContainerWithIdentifier:nil];
+    NSError *error;
+    if([self.store executeSaveRequest:request error:&error]) {
+        completion(YES, error);
+    }else {
+        completion(NO, error);
+    }
+}
+
 @end

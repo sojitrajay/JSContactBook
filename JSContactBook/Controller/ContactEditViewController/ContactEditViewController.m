@@ -192,7 +192,15 @@ typedef enum : NSUInteger {
 
 - (IBAction)handerDone:(id)sender {
     
-    CNMutableContact *mutableContact = self.contact.mutableCopy;
+    CNMutableContact *mutableContact = nil;
+    
+    if (self.screenMode == ScreemModeEdit){
+        mutableContact = self.contact.mutableCopy;
+    }
+    else if (self.screenMode == ScreemModeAdd)
+    {
+        mutableContact = [[CNMutableContact alloc] init];
+    }
     
     if (ContactEditCellTypeCount>0)
     {
@@ -200,33 +208,46 @@ typedef enum : NSUInteger {
             if (section == ContactEditCellTypeImage) {
                 
                 ContactEditNameImageTableViewCell *cell = (ContactEditNameImageTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:ContactEditCellTypeImage]];
-
+                
                 mutableContact.givenName    = cell.textFieldFirstName.text;
                 mutableContact.familyName   = cell.textFieldLastName.text;
-
+                
             }
             
-//    NSInteger rows = [self.tableView numberOfRowsInSection:section];
-//    for (int i = 0; i<rows; i++) {
-//
-//    }
-
+            //    NSInteger rows = [self.tableView numberOfRowsInSection:section];
+            //    for (int i = 0; i<rows; i++) {
+            //
+            //    }
+            
         }
         
-        [[ContactManager sharedContactManager] updateContact:mutableContact withCompletion:^(BOOL success, NSError *error) {
-            
-            if (success) {
-                self.contact = mutableContact;
-            }
-            else
-            {
-                NSLog(@"%@",[error localizedDescription]);
-            }
-            
-        }];
-
+        if (self.screenMode == ScreemModeEdit) {
+            [[ContactManager sharedContactManager] updateContact:mutableContact withCompletion:^(BOOL success, NSError *error) {
+                
+                if (success) {
+                    self.contact = mutableContact;
+                }
+                else
+                {
+                    NSLog(@"%@",[error localizedDescription]);
+                }
+                
+            }];
+        }
+        else if (self.screenMode == ScreemModeAdd)
+        {
+            [[ContactManager sharedContactManager] addContact:mutableContact withCompletion:^(BOOL success, NSError *error) {
+                if (success) {
+                    self.contact = mutableContact;
+                }
+                else
+                {
+                    NSLog(@"%@",[error localizedDescription]);
+                }
+            }];
+        }
     }
-    
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

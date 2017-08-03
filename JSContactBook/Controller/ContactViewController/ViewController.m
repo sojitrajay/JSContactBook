@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "ContactTableViewCell.h"
 #import "ContactDetailViewController.h"
+#import "ContactEditViewController.h"
 
 #import "UIImageView+AGCInitials.h"
 

@@ -77,7 +77,13 @@
                             <constraint firstAttribute="trailing" secondItem="XPS-GE-Pu9" secondAttribute="trailing" id="hCi-FJ-c5C"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="kbF-Zy-7mq"/>
+                    <navigationItem key="navigationItem" id="vaF-EO-uC2">
+                        <barButtonItem key="rightBarButtonItem" image="add" id="kLI-6Q-6Mh">
+                            <connections>
+                                <segue destination="Z1s-1s-nBc" kind="presentation" identifier="segueAddContact" id="cB8-wZ-LEt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="XPS-GE-Pu9" id="GNK-XY-wiu"/>
                         <segue destination="pH2-fx-pUf" kind="show" identifier="contactListToDetail" id="4ji-F3-iR7"/>
@@ -306,6 +312,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a4E-HF-5ob">
                                                     <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="mB4-Ag-95P"/>
                                                         <constraint firstAttribute="width" constant="50" id="zDW-mg-zF1"/>
@@ -407,4 +414,10 @@
             <point key="canvasLocation" x="499" y="-556"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add" width="25" height="25"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="cB8-wZ-LEt"/>
+    </inferredMetricsTieBreakers>
 </document>
