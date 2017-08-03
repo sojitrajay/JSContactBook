@@ -109,9 +109,28 @@
     [saveRequest updateContact:mutableContact];
     NSError *error;
     if([self.store executeSaveRequest:saveRequest error:&error]) {
-        completion(nil);
+        completion(YES, error);
     }else {
-        completion(error);
+        completion(NO, error);
+    }
+}
+
+/**
+ *  @author Jayesh Sojitra
+ *
+ *  This method is used to delete from the application to device.
+ *
+ */
+- (void)deleteContact:(CNMutableContact*)mutableContact withCompletion:(JSContactManagerUpdateContactsCompletion)completion
+{
+    CNSaveRequest *deleteRequest = [[CNSaveRequest alloc] init];
+    [deleteRequest deleteContact:mutableContact];
+    
+    NSError *error;
+    if([self.store executeSaveRequest:deleteRequest error:&error]) {
+        completion(YES, error);
+    }else {
+        completion(NO, error);
     }
 }
 

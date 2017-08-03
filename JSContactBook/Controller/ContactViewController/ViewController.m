@@ -124,8 +124,22 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [arrayContact removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        CNContact *contact = [arrayContact objectAtIndex:indexPath.row];
+
+        [[ContactManager sharedContactManager] deleteContact:contact.mutableCopy withCompletion:^(BOOL success, NSError *error) {
+            
+            if (success) {
+                [arrayContact removeObjectAtIndex:indexPath.row];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            else
+            {
+                NSLog(@"%@",[error localizedDescription]);
+            }
+            
+        }];
+        
     }
 }
 

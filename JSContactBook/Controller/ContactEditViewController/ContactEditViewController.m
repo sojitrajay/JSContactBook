@@ -213,9 +213,9 @@ typedef enum : NSUInteger {
 
         }
         
-        [[ContactManager sharedContactManager] updateContact:mutableContact withCompletion:^(NSError *error) {
+        [[ContactManager sharedContactManager] updateContact:mutableContact withCompletion:^(BOOL success, NSError *error) {
             
-            if (error==nil) {
+            if (success) {
                 self.contact = mutableContact;
             }
             else
