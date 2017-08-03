@@ -80,11 +80,30 @@
                     <navigationItem key="navigationItem" id="kbF-Zy-7mq"/>
                     <connections>
                         <outlet property="tableView" destination="XPS-GE-Pu9" id="GNK-XY-wiu"/>
+                        <segue destination="pH2-fx-pUf" kind="show" identifier="contactListToDetail" id="mym-hR-dYK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1211.25" y="-557.74647887323943"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="oy4-1e-HGa">
+            <objects>
+                <viewController id="pH2-fx-pUf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eC2-Qc-wmW"/>
+                        <viewControllerLayoutGuide type="bottom" id="t48-J9-ire"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FGm-ud-BmD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uBn-4w-8aX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1913" y="-558"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bvJ-bW-VIZ">
