@@ -17,6 +17,7 @@
 
 typedef void (^JSContactManagerCompletion)(BOOL success, NSError *error);
 typedef void (^JSContactManagerFetchContactsCompletion)(NSArray *arrayContacts, NSError *error);
+typedef void (^JSContactManagerUpdateContactsCompletion)(NSError *error);
 
 @interface ContactManager : NSObject
 
@@ -30,5 +31,7 @@ typedef void (^JSContactManagerFetchContactsCompletion)(NSArray *arrayContacts, 
 - (void)requestContactManagerWithCompletion:(JSContactManagerCompletion)completion;
 
 - (void)fetchContactsWithCompletion:(JSContactManagerFetchContactsCompletion)completion;
+
+- (void)updateContact:(CNMutableContact*)mutableContact withCompletion:(JSContactManagerUpdateContactsCompletion)completion;
 
 @end

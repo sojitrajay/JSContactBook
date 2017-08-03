@@ -201,24 +201,9 @@ typedef enum : NSUInteger {
                 
                 ContactEditNameImageTableViewCell *cell = (ContactEditNameImageTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:ContactEditCellTypeImage]];
 
-                mutableContact.givenName = cell.textFieldFirstName.text;
-                
-                CNSaveRequest *saveRequest = [[CNSaveRequest alloc] init];
-                [saveRequest updateContact:mutableContact];
-                
-                NSError *error;
-                if([[ContactManager sharedContactManager].store executeSaveRequest:saveRequest error:&error]) {
-                    NSLog(@"save");
-                    
-//                    NSInteger index = [[ContactManager sharedContactManager].arrayContacts indexOfObject:self.contact];
-                    self.contact = mutableContact;
-//                    [[ContactManager sharedContactManager].arrayContacts replaceObjectAtIndex:index withObject:self.contact];
-                    
-                    NSLog(@"%@",self.contact.givenName);
-                }else {
-                    NSLog(@"save error : %@", [error description]);
-                }
-                
+                mutableContact.givenName    = cell.textFieldFirstName.text;
+                mutableContact.familyName   = cell.textFieldLastName.text;
+
             }
             
 //    NSInteger rows = [self.tableView numberOfRowsInSection:section];
@@ -227,6 +212,18 @@ typedef enum : NSUInteger {
 //    }
 
         }
+        
+        [[ContactManager sharedContactManager] updateContact:mutableContact withCompletion:^(NSError *error) {
+            
+            if (error==nil) {
+                self.contact = mutableContact;
+            }
+            else
+            {
+                NSLog(@"%@",[error localizedDescription]);
+            }
+            
+        }];
 
     }
     

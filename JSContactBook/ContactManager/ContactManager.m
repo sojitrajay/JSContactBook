@@ -97,4 +97,22 @@
     }
 }
 
+/**
+ *  @author Jayesh Sojitra
+ *
+ *  This method is used to update contacts from the application to device.
+ *
+ */
+- (void)updateContact:(CNMutableContact*)mutableContact withCompletion:(JSContactManagerUpdateContactsCompletion)completion
+{
+    CNSaveRequest *saveRequest = [[CNSaveRequest alloc] init];
+    [saveRequest updateContact:mutableContact];
+    NSError *error;
+    if([self.store executeSaveRequest:saveRequest error:&error]) {
+        completion(nil);
+    }else {
+        completion(error);
+    }
+}
+
 @end
