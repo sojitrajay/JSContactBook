@@ -16,6 +16,9 @@
 		447594251F3249D300EAFB47 /* JSContactBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 447594241F3249D300EAFB47 /* JSContactBookTests.m */; };
 		447594301F3249D300EAFB47 /* JSContactBookUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4475942F1F3249D300EAFB47 /* JSContactBookUITests.m */; };
 		447594451F324F4100EAFB47 /* ContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 447594441F324F4100EAFB47 /* ContactManager.m */; };
+		8C32C0C61F332A0D00B920DD /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0C51F332A0D00B920DD /* ContactTableViewCell.m */; };
+		8C32C0CD1F332AF400B920DD /* CNContact+JSContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0CC1F332AF400B920DD /* CNContact+JSContact.m */; };
+		8C32C0D41F332E8700B920DD /* NSAttributedString+JSAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0D31F332E8700B920DD /* NSAttributedString+JSAttributedString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,12 @@
 		447594311F3249D300EAFB47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		447594431F324F4100EAFB47 /* ContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactManager.h; sourceTree = "<group>"; };
 		447594441F324F4100EAFB47 /* ContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactManager.m; sourceTree = "<group>"; };
+		8C32C0C41F332A0D00B920DD /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
+		8C32C0C51F332A0D00B920DD /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
+		8C32C0CB1F332AF400B920DD /* CNContact+JSContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CNContact+JSContact.h"; sourceTree = "<group>"; };
+		8C32C0CC1F332AF400B920DD /* CNContact+JSContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CNContact+JSContact.m"; sourceTree = "<group>"; };
+		8C32C0D21F332E8700B920DD /* NSAttributedString+JSAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JSAttributedString.h"; sourceTree = "<group>"; };
+		8C32C0D31F332E8700B920DD /* NSAttributedString+JSAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+JSAttributedString.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +117,7 @@
 				4475940E1F3249D300EAFB47 /* AppDelegate.m */,
 				447594101F3249D300EAFB47 /* ViewController.h */,
 				447594111F3249D300EAFB47 /* ViewController.m */,
+				8C32C0C31F332A0D00B920DD /* ContactTableViewCell */,
 				447594421F324F4100EAFB47 /* ContactManager */,
 				447594131F3249D300EAFB47 /* Main.storyboard */,
 				447594161F3249D300EAFB47 /* Assets.xcassets */,
@@ -147,10 +157,39 @@
 		447594421F324F4100EAFB47 /* ContactManager */ = {
 			isa = PBXGroup;
 			children = (
+				8C32C0D11F332E8700B920DD /* JSAttributedString */,
+				8C32C0CA1F332AF400B920DD /* JSContact */,
 				447594431F324F4100EAFB47 /* ContactManager.h */,
 				447594441F324F4100EAFB47 /* ContactManager.m */,
 			);
 			path = ContactManager;
+			sourceTree = "<group>";
+		};
+		8C32C0C31F332A0D00B920DD /* ContactTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				8C32C0C41F332A0D00B920DD /* ContactTableViewCell.h */,
+				8C32C0C51F332A0D00B920DD /* ContactTableViewCell.m */,
+			);
+			path = ContactTableViewCell;
+			sourceTree = "<group>";
+		};
+		8C32C0CA1F332AF400B920DD /* JSContact */ = {
+			isa = PBXGroup;
+			children = (
+				8C32C0CB1F332AF400B920DD /* CNContact+JSContact.h */,
+				8C32C0CC1F332AF400B920DD /* CNContact+JSContact.m */,
+			);
+			path = JSContact;
+			sourceTree = "<group>";
+		};
+		8C32C0D11F332E8700B920DD /* JSAttributedString */ = {
+			isa = PBXGroup;
+			children = (
+				8C32C0D21F332E8700B920DD /* NSAttributedString+JSAttributedString.h */,
+				8C32C0D31F332E8700B920DD /* NSAttributedString+JSAttributedString.m */,
+			);
+			path = JSAttributedString;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,8 +327,11 @@
 			files = (
 				447594121F3249D300EAFB47 /* ViewController.m in Sources */,
 				4475940F1F3249D300EAFB47 /* AppDelegate.m in Sources */,
+				8C32C0C61F332A0D00B920DD /* ContactTableViewCell.m in Sources */,
+				8C32C0CD1F332AF400B920DD /* CNContact+JSContact.m in Sources */,
 				447594451F324F4100EAFB47 /* ContactManager.m in Sources */,
 				4475940C1F3249D300EAFB47 /* main.m in Sources */,
+				8C32C0D41F332E8700B920DD /* NSAttributedString+JSAttributedString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

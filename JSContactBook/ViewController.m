@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ContactTableViewCell.h"
 
 #import "ContactManager.h"
 
@@ -14,6 +15,10 @@
 {
     NSMutableArray *arrayContact;
 }
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+
 @end
 
 @implementation ViewController
@@ -32,6 +37,11 @@
             [[ContactManager sharedContactManager] fetchContactsWithCompletion:^(NSArray *arrayContacts, NSError *error) {
                
                 arrayContact = [arrayContacts mutableCopy];
+                NSLog(@"%@",arrayContacts);
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
                 
             }];
             
@@ -48,6 +58,28 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Table View Data Source Methods
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return arrayContact.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CNContact *contact = [arrayContact objectAtIndex:indexPath.row];
+    
+    ContactTableViewCell *cell = (ContactTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactTableViewCell class]) forIndexPath:indexPath];
+    
+    if (contact!=nil) {
+
+        [cell.labelContactName setAttributedText:contact.displayName];
+        
+    }
+
+    return cell;
 }
 
 @end

@@ -13,6 +13,8 @@
 #import <Contacts/CNContactFetchRequest.h>
 #import <ContactsUI/CNContactViewController.h>
 
+#import "CNContact+JSContact.h"
+
 typedef void (^JSContactManagerCompletion)(BOOL success, NSError *error);
 typedef void (^JSContactManagerFetchContactsCompletion)(NSArray *arrayContacts, NSError *error);
 

@@ -22,13 +22,24 @@
     static ContactManager *_sharedObj = nil;
     static dispatch_once_t onceInstance;
     dispatch_once(&onceInstance, ^{
-        _sharedObj = [[ContactManager alloc]init];
-        
-        _sharedObj.store            = [[CNContactStore alloc]init];
-        _sharedObj.arrayContacts    = [[NSMutableArray alloc] init];
+        _sharedObj = [[self alloc] init];
     });
     return _sharedObj;
 }
+
+- (instancetype)init
+{
+    self = [super init];
+    
+    if(self)
+    {
+        self.store            = [[CNContactStore alloc]init];
+        self.arrayContacts    = [[NSMutableArray alloc] init];
+    }
+    
+    return self;
+}
+
 
 /**
  *  @author Jayesh Sojitra
