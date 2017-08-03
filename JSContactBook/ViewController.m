@@ -11,7 +11,9 @@
 #import "ContactManager.h"
 
 @interface ViewController ()
-
+{
+    NSMutableArray *arrayContact;
+}
 @end
 
 @implementation ViewController
@@ -20,6 +22,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
+    arrayContact = [[NSMutableArray alloc] init];
+    
     [[ContactManager sharedContactManager] requestContactManagerWithCompletion:^(BOOL success, NSError *error) {
        
         if (success) {
@@ -27,7 +31,7 @@
             
             [[ContactManager sharedContactManager] fetchContactsWithCompletion:^(NSArray *arrayContacts, NSError *error) {
                
-                NSLog(@"%@",arrayContacts);
+                arrayContact = [arrayContacts mutableCopy];
                 
             }];
             
@@ -38,13 +42,12 @@
         }
         
     }];
+    
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

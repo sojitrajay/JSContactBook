@@ -60,20 +60,33 @@
 -(void)fetchContactsWithCompletion:(JSContactManagerFetchContactsCompletion)completion
 {
     [self.arrayContacts removeAllObjects];
-    CNContactStore*  store = [[CNContactStore alloc]init];
-    CNContactFetchRequest *fetchReq = [[CNContactFetchRequest alloc]initWithKeysToFetch:@[CNContactIdentifierKey, CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactImageDataAvailableKey, CNContactImageDataKey, CNContactViewController.descriptorForRequiredKeys]];
-    
-    fetchReq.sortOrder = CNContactSortOrderUserDefault;//For showing contact same as phonebook sorting
+    NSArray *keys = @[CNContactIdentifierKey, CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactImageDataAvailableKey, CNContactImageDataKey, CNContactViewController.descriptorForRequiredKeys];
     
     NSError *error = nil;
-    [store enumerateContactsWithFetchRequest:fetchReq error:&error usingBlock:^(CNContact * _Nonnull contact, BOOL  *_Nonnull stop) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.arrayContacts addObject:contact];
-        });
-    }];
+    NSArray *containers = [self.store containersMatchingPredicate:nil error:&error];
     
-    completion([self.arrayContacts mutableCopy],error);
-    
+    if (containers.count>0) {
+        [containers enumerateObjectsUsingBlock:^(CNContainer *container, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            NSError *errorContainer = nil;
+            NSPredicate *predicateContactsContainer = [CNContact predicateForContactsInContainerWithIdentifier:container.identifier];
+            
+            CNContactFetchRequest *fetchRequestContainer = [[CNContactFetchRequest alloc]initWithKeysToFetch:keys];
+            fetchRequestContainer.predicate = predicateContactsContainer;
+            
+            NSArray *arrayContactsInContainer = [self.store unifiedContactsMatchingPredicate:predicateContactsContainer keysToFetch:keys error:&errorContainer];
+            [self.arrayContacts addObjectsFromArray:arrayContactsInContainer];
+            
+            if ([container isEqual:[containers lastObject]]) {
+                completion(self.arrayContacts,error);
+            }
+
+        }];
+    }
+    else
+    {
+        completion(@[],error);
+    }
 }
 
 @end
