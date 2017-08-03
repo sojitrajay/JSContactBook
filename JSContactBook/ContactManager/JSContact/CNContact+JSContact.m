@@ -28,7 +28,19 @@
     
     [givenName appendAttributedString:familyName];
 
-    return [givenName trimString];
+    if ([givenName trimString].length>0) {
+        return [givenName trimString];
+    }
+    else
+    {
+        NSDictionary *attributeItalicText = @{
+                                            NSFontAttributeName:[UIFont italicSystemFontOfSize:[UIFont systemFontSize]],
+                                            NSForegroundColorAttributeName:[UIColor blackColor]
+                                            };
+        NSMutableAttributedString *name  = [[NSMutableAttributedString alloc]initWithString:@"No Name" attributes:attributeItalicText];
+        return name;
+    }
+    
 }
 
 @end
