@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44429AA91F339CF20077D73A /* ContactTitleAndDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44429AA81F339CF20077D73A /* ContactTitleAndDetailTableViewCell.m */; };
+		44429AB01F33A4940077D73A /* ContactAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44429AAF1F33A4940077D73A /* ContactAddressTableViewCell.m */; };
 		4475940C1F3249D300EAFB47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4475940B1F3249D300EAFB47 /* main.m */; };
 		4475940F1F3249D300EAFB47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4475940E1F3249D300EAFB47 /* AppDelegate.m */; };
 		447594151F3249D300EAFB47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447594131F3249D300EAFB47 /* Main.storyboard */; };
@@ -44,6 +46,10 @@
 /* Begin PBXFileReference section */
 		204ACE60C35DFD6307F9A4F1 /* Pods_JSContactBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JSContactBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25D33E470512EB58D7782E5F /* Pods-JSContactBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSContactBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSContactBook/Pods-JSContactBook.debug.xcconfig"; sourceTree = "<group>"; };
+		44429AA71F339CF20077D73A /* ContactTitleAndDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTitleAndDetailTableViewCell.h; sourceTree = "<group>"; };
+		44429AA81F339CF20077D73A /* ContactTitleAndDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTitleAndDetailTableViewCell.m; sourceTree = "<group>"; };
+		44429AAE1F33A4940077D73A /* ContactAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactAddressTableViewCell.h; sourceTree = "<group>"; };
+		44429AAF1F33A4940077D73A /* ContactAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactAddressTableViewCell.m; sourceTree = "<group>"; };
 		447594071F3249D300EAFB47 /* JSContactBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSContactBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4475940B1F3249D300EAFB47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4475940D1F3249D300EAFB47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -107,6 +113,24 @@
 				204ACE60C35DFD6307F9A4F1 /* Pods_JSContactBook.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		44429AA61F339CF20077D73A /* ContactTitleAndDetailTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				44429AA71F339CF20077D73A /* ContactTitleAndDetailTableViewCell.h */,
+				44429AA81F339CF20077D73A /* ContactTitleAndDetailTableViewCell.m */,
+			);
+			path = ContactTitleAndDetailTableViewCell;
+			sourceTree = "<group>";
+		};
+		44429AAD1F33A4940077D73A /* ContactAddressTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				44429AAE1F33A4940077D73A /* ContactAddressTableViewCell.h */,
+				44429AAF1F33A4940077D73A /* ContactAddressTableViewCell.m */,
+			);
+			path = ContactAddressTableViewCell;
 			sourceTree = "<group>";
 		};
 		447593FE1F3249D300EAFB47 = {
@@ -216,6 +240,8 @@
 			children = (
 				8C32C0DA1F33570000B920DD /* ContactDetailViewController.h */,
 				8C32C0DB1F33570000B920DD /* ContactDetailViewController.m */,
+				44429AAD1F33A4940077D73A /* ContactAddressTableViewCell */,
+				44429AA61F339CF20077D73A /* ContactTitleAndDetailTableViewCell */,
 				8C32C0E81F33582200B920DD /* ContactImageTableViewCell */,
 			);
 			path = ContactDetailViewController;
@@ -442,10 +468,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44429AB01F33A4940077D73A /* ContactAddressTableViewCell.m in Sources */,
 				8C32C0E21F33570000B920DD /* ContactDetailViewController.m in Sources */,
 				4475940F1F3249D300EAFB47 /* AppDelegate.m in Sources */,
 				8C32C0E41F33570000B920DD /* ViewController.m in Sources */,
 				8C32C0EB1F33582300B920DD /* ContactImageTableViewCell.m in Sources */,
+				44429AA91F339CF20077D73A /* ContactTitleAndDetailTableViewCell.m in Sources */,
 				8C32C0E31F33570000B920DD /* ContactTableViewCell.m in Sources */,
 				8C32C0CD1F332AF400B920DD /* CNContact+JSContact.m in Sources */,
 				447594451F324F4100EAFB47 /* ContactManager.m in Sources */,

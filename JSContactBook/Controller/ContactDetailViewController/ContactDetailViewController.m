@@ -8,10 +8,17 @@
 
 #import "ContactDetailViewController.h"
 #import "ContactImageTableViewCell.h"
+#import "ContactTitleAndDetailTableViewCell.h"
+#import "ContactAddressTableViewCell.h"
+
 #import "UIImageView+AGCInitials.h"
 
 typedef enum : NSUInteger {
     ContactCellTypeImage = 0,
+    ContactCellTypePhone,
+    ContactCellTypeEmail,
+    ContactCellTypeAddress,
+    ContactCellTypeBirthDay,
     ContactCellTypeCount
 } ContactCellType;
 
@@ -55,6 +62,23 @@ typedef enum : NSUInteger {
     if (section == ContactCellTypeImage) {
         return 1;
     }
+    else if (section == ContactCellTypePhone) {
+        return self.contact.phoneNumbers.count;
+    }
+    else if (section == ContactCellTypeEmail) {
+        return self.contact.emailAddresses.count;
+    }
+    else if (section == ContactCellTypeAddress)
+    {
+        return self.contact.postalAddresses.count;
+    }
+    else if (section == ContactCellTypeBirthDay)
+    {
+        if (self.contact.birthday!=nil) {
+            return 1;
+        }
+    }
+    
     return 0;
 }
 
@@ -62,6 +86,25 @@ typedef enum : NSUInteger {
 {
     if (indexPath.section == ContactCellTypeImage) {
         return 144.0f;
+    }
+    else if (indexPath.section == ContactCellTypePhone || indexPath.section == ContactCellTypeEmail || indexPath.section == ContactCellTypeBirthDay){
+        return 56.0f;
+    }
+    else if (indexPath.section == ContactCellTypeAddress)
+    {
+        return UITableViewAutomaticDimension;
+    }
+    return 44.0f;
+}
+
+-(CGFloat)tableView:(UITableView*)tableView estimatedHeightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    if (indexPath.section == ContactCellTypeImage) {
+        return 144.0f;
+    }
+    else if (indexPath.section == ContactCellTypePhone || indexPath.section == ContactCellTypeEmail || indexPath.section == ContactCellTypeAddress || indexPath.section == ContactCellTypeBirthDay)
+    {
+        return 56.0f;
     }
     return 44.0f;
 }
@@ -89,6 +132,53 @@ typedef enum : NSUInteger {
             cell.imageViewContact.clipsToBounds = YES;
             
         }
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        return cell;
+    }
+    else if (indexPath.section == ContactCellTypePhone || indexPath.section == ContactCellTypeEmail || indexPath.section == ContactCellTypeBirthDay)
+    {
+        ContactTitleAndDetailTableViewCell *cell = (ContactTitleAndDetailTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactTitleAndDetailTableViewCell class]) forIndexPath:indexPath];
+        
+        if (self.contact!=nil) {
+            if (indexPath.section == ContactCellTypePhone) {
+                NSArray<CNLabeledValue<CNPhoneNumber*>*> *arrayPhonenumbers = self.contact.phoneNumbers;
+                CNLabeledValue<CNPhoneNumber*> *phoneNumber = [arrayPhonenumbers objectAtIndex:indexPath.row];
+                CNPhoneNumber *number = phoneNumber.value;
+                NSString *digits = number.stringValue;
+                NSString *label = [CNLabeledValue localizedStringForLabel:phoneNumber.label];
+                [cell.labelContactTitle setText:label];
+                [cell.labelContactDetail setText:digits];
+            }
+            else if (indexPath.section == ContactCellTypeEmail)
+            {
+                NSArray<CNLabeledValue<NSString*>*> *arrayEmails = self.contact.emailAddresses;
+                CNLabeledValue<NSString*> *emailAddress = [arrayEmails objectAtIndex:indexPath.row];
+                [cell.labelContactTitle setText:[CNLabeledValue localizedStringForLabel:emailAddress.label]];
+                [cell.labelContactDetail setText:emailAddress.value];
+            }
+            else if (indexPath.section == ContactCellTypeBirthDay)
+            {
+                [cell.labelContactTitle setText:@"birthday"];
+                [cell.labelContactDetail setText:[NSDateFormatter localizedStringFromDate:self.contact.birthday.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle]];
+            }
+        }
+
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        return cell;
+    }
+    else if (indexPath.section == ContactCellTypeAddress)
+    {
+        ContactAddressTableViewCell *cell = (ContactAddressTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactAddressTableViewCell class]) forIndexPath:indexPath];
+        
+        NSArray<CNLabeledValue<CNPostalAddress*>*> *arrayAddresses = self.contact.postalAddresses;
+        CNLabeledValue<CNPostalAddress*> *address = [arrayAddresses objectAtIndex:indexPath.row];
+        CNPostalAddress *postalAddress = address.value;
+
+        [cell.labelContactTitle setText:[CNLabeledValue localizedStringForLabel:address.label]];
+        [cell.labelContactDetail setText:[CNLabeledValue localizedStringForLabel:[CNPostalAddressFormatter stringFromPostalAddress:postalAddress style:CNPostalAddressFormatterStyleMailingAddress]]];
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
