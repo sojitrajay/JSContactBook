@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContactManager.h"
 
 @interface ContactDetailViewController : UIViewController
+
+@property (nonatomic) CNContact *contact;
 
 @end

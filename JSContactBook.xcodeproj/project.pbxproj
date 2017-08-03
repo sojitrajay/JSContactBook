@@ -21,6 +21,7 @@
 		8C32C0E21F33570000B920DD /* ContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0DB1F33570000B920DD /* ContactDetailViewController.m */; };
 		8C32C0E31F33570000B920DD /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0DF1F33570000B920DD /* ContactTableViewCell.m */; };
 		8C32C0E41F33570000B920DD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0E11F33570000B920DD /* ViewController.m */; };
+		8C32C0EB1F33582300B920DD /* ContactImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0EA1F33582300B920DD /* ContactImageTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		8C32C0DF1F33570000B920DD /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
 		8C32C0E01F33570000B920DD /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8C32C0E11F33570000B920DD /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8C32C0E91F33582300B920DD /* ContactImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactImageTableViewCell.h; sourceTree = "<group>"; };
+		8C32C0EA1F33582300B920DD /* ContactImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactImageTableViewCell.m; sourceTree = "<group>"; };
 		D20787C511E5B6D249448596 /* Pods-JSContactBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSContactBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSContactBook/Pods-JSContactBook.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +216,7 @@
 			children = (
 				8C32C0DA1F33570000B920DD /* ContactDetailViewController.h */,
 				8C32C0DB1F33570000B920DD /* ContactDetailViewController.m */,
+				8C32C0E81F33582200B920DD /* ContactImageTableViewCell */,
 			);
 			path = ContactDetailViewController;
 			sourceTree = "<group>";
@@ -234,6 +238,15 @@
 				8C32C0DF1F33570000B920DD /* ContactTableViewCell.m */,
 			);
 			path = ContactTableViewCell;
+			sourceTree = "<group>";
+		};
+		8C32C0E81F33582200B920DD /* ContactImageTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				8C32C0E91F33582300B920DD /* ContactImageTableViewCell.h */,
+				8C32C0EA1F33582300B920DD /* ContactImageTableViewCell.m */,
+			);
+			path = ContactImageTableViewCell;
 			sourceTree = "<group>";
 		};
 		EBA706D4144146307BF68E4A /* Pods */ = {
@@ -432,6 +445,7 @@
 				8C32C0E21F33570000B920DD /* ContactDetailViewController.m in Sources */,
 				4475940F1F3249D300EAFB47 /* AppDelegate.m in Sources */,
 				8C32C0E41F33570000B920DD /* ViewController.m in Sources */,
+				8C32C0EB1F33582300B920DD /* ContactImageTableViewCell.m in Sources */,
 				8C32C0E31F33570000B920DD /* ContactTableViewCell.m in Sources */,
 				8C32C0CD1F332AF400B920DD /* CNContact+JSContact.m in Sources */,
 				447594451F324F4100EAFB47 /* ContactManager.m in Sources */,

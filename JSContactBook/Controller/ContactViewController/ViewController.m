@@ -8,9 +8,13 @@
 
 #import "ViewController.h"
 #import "ContactTableViewCell.h"
+#import "ContactDetailViewController.h"
+
 #import "UIImageView+AGCInitials.h"
 
 #import "ContactManager.h"
+
+#define kSegueContactListToDetail   @"contactListToDetail"
 
 @interface ViewController ()
 {
@@ -39,6 +43,19 @@
     [super viewWillAppear:animated];
     [self loadContacts];
 }
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:kSegueContactListToDetail]) {
+        ContactDetailViewController *contactDetailVC = [segue destinationViewController];
+        contactDetailVC.contact = sender;
+    }
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -94,6 +111,14 @@
     
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
+}
+
+#pragma mark - Table View Delegate Methods
+
+-(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    CNContact *contact = [arrayContact objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:kSegueContactListToDetail sender:contact];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
