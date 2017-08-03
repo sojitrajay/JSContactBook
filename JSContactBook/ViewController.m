@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ContactTableViewCell.h"
+#import "UIImageView+AGCInitials.h"
 
 #import "ContactManager.h"
 
@@ -70,14 +71,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CNContact *contact = [arrayContact objectAtIndex:indexPath.row];
-    
+
     ContactTableViewCell *cell = (ContactTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactTableViewCell class]) forIndexPath:indexPath];
     
     if (contact!=nil) {
 
+        // Set name
         [cell.labelContactName setAttributedText:contact.displayName];
         
+        // Set image
+        if (contact.imageData!=nil && contact.thumbnailImageData!=nil) {
+            [cell.imageViewThumbContact setImage:[UIImage imageWithData:(contact.thumbnailImageData!=nil)?contact.thumbnailImageData:contact.imageData]];
+        }
+        else
+        {
+            [cell.imageViewThumbContact agc_setImageWithInitialsFromName:contact.displayName.string];
+        }
+        
+        [cell.imageViewThumbContact.layer setCornerRadius:cell.imageViewThumbContact.frame.size.width/2];
+        cell.imageViewThumbContact.clipsToBounds = YES;
+        
     }
+    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     return cell;
 }

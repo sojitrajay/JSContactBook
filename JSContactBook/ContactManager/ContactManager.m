@@ -71,7 +71,7 @@
 -(void)fetchContactsWithCompletion:(JSContactManagerFetchContactsCompletion)completion
 {
     [self.arrayContacts removeAllObjects];
-    NSArray *keys = @[CNContactIdentifierKey, CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactImageDataAvailableKey, CNContactImageDataKey, CNContactViewController.descriptorForRequiredKeys];
+    NSArray *keys = @[CNContactIdentifierKey, CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactImageDataAvailableKey, CNContactImageDataKey, CNContactViewController.descriptorForRequiredKeys, CNContactImageDataKey, CNContactThumbnailImageDataKey];
     
     NSError *error = nil;
     NSArray *containers = [self.store containersMatchingPredicate:nil error:&error];

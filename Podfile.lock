@@ -1,0 +1,15 @@
+PODS:
+  - SVProgressHUD (2.1.2)
+  - UIImageView-AGCInitials (0.0.2)
+
+DEPENDENCIES:
+  - SVProgressHUD
+  - UIImageView-AGCInitials
+
+SPEC CHECKSUMS:
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  UIImageView-AGCInitials: 4326faf01587dbfa2ffdee7e596ae96c1beca05c
+
+PODFILE CHECKSUM: bd3f240a69a2dcddc0cf1ac26cd13d369998882c
+
+COCOAPODS: 1.2.0

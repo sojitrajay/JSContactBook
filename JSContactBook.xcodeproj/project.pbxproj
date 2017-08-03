@@ -16,6 +16,7 @@
 		447594251F3249D300EAFB47 /* JSContactBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 447594241F3249D300EAFB47 /* JSContactBookTests.m */; };
 		447594301F3249D300EAFB47 /* JSContactBookUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4475942F1F3249D300EAFB47 /* JSContactBookUITests.m */; };
 		447594451F324F4100EAFB47 /* ContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 447594441F324F4100EAFB47 /* ContactManager.m */; };
+		51BF833E08018DC7F40217BB /* Pods_JSContactBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 204ACE60C35DFD6307F9A4F1 /* Pods_JSContactBook.framework */; };
 		8C32C0C61F332A0D00B920DD /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0C51F332A0D00B920DD /* ContactTableViewCell.m */; };
 		8C32C0CD1F332AF400B920DD /* CNContact+JSContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0CC1F332AF400B920DD /* CNContact+JSContact.m */; };
 		8C32C0D41F332E8700B920DD /* NSAttributedString+JSAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0D31F332E8700B920DD /* NSAttributedString+JSAttributedString.m */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		204ACE60C35DFD6307F9A4F1 /* Pods_JSContactBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JSContactBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		25D33E470512EB58D7782E5F /* Pods-JSContactBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSContactBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSContactBook/Pods-JSContactBook.debug.xcconfig"; sourceTree = "<group>"; };
 		447594071F3249D300EAFB47 /* JSContactBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSContactBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4475940B1F3249D300EAFB47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4475940D1F3249D300EAFB47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 		8C32C0CC1F332AF400B920DD /* CNContact+JSContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CNContact+JSContact.m"; sourceTree = "<group>"; };
 		8C32C0D21F332E8700B920DD /* NSAttributedString+JSAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JSAttributedString.h"; sourceTree = "<group>"; };
 		8C32C0D31F332E8700B920DD /* NSAttributedString+JSAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+JSAttributedString.m"; sourceTree = "<group>"; };
+		D20787C511E5B6D249448596 /* Pods-JSContactBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSContactBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSContactBook/Pods-JSContactBook.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51BF833E08018DC7F40217BB /* Pods_JSContactBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BA8B2C97923747023A4A589 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				204ACE60C35DFD6307F9A4F1 /* Pods_JSContactBook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		447593FE1F3249D300EAFB47 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +110,8 @@
 				447594231F3249D300EAFB47 /* JSContactBookTests */,
 				4475942E1F3249D300EAFB47 /* JSContactBookUITests */,
 				447594081F3249D300EAFB47 /* Products */,
+				EBA706D4144146307BF68E4A /* Pods */,
+				0BA8B2C97923747023A4A589 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -192,6 +207,15 @@
 			path = JSAttributedString;
 			sourceTree = "<group>";
 		};
+		EBA706D4144146307BF68E4A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				25D33E470512EB58D7782E5F /* Pods-JSContactBook.debug.xcconfig */,
+				D20787C511E5B6D249448596 /* Pods-JSContactBook.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -199,9 +223,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 447594341F3249D300EAFB47 /* Build configuration list for PBXNativeTarget "JSContactBook" */;
 			buildPhases = (
+				7C4CE337F9C20BD02585100E /* [CP] Check Pods Manifest.lock */,
 				447594031F3249D300EAFB47 /* Sources */,
 				447594041F3249D300EAFB47 /* Frameworks */,
 				447594051F3249D300EAFB47 /* Resources */,
+				F673D43B0A20163E71EAE025 /* [CP] Embed Pods Frameworks */,
+				98C4944A7323770EAA5F10E8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -319,6 +346,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7C4CE337F9C20BD02585100E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		98C4944A7323770EAA5F10E8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JSContactBook/Pods-JSContactBook-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F673D43B0A20163E71EAE025 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JSContactBook/Pods-JSContactBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		447594031F3249D300EAFB47 /* Sources */ = {
@@ -480,6 +555,7 @@
 		};
 		447594351F3249D300EAFB47 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25D33E470512EB58D7782E5F /* Pods-JSContactBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JSContactBook/Info.plist;
@@ -491,6 +567,7 @@
 		};
 		447594361F3249D300EAFB47 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D20787C511E5B6D249448596 /* Pods-JSContactBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JSContactBook/Info.plist;
