@@ -35,6 +35,7 @@
     {
         self.store            = [[CNContactStore alloc]init];
         self.arrayContacts    = [[NSMutableArray alloc] init];
+        self.keys             = @[CNContactIdentifierKey, CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactImageDataAvailableKey, CNContactImageDataKey, CNContactViewController.descriptorForRequiredKeys, CNContactImageDataKey, CNContactThumbnailImageDataKey];
     }
     
     return self;
@@ -71,7 +72,6 @@
 -(void)fetchContactsWithCompletion:(JSContactManagerFetchContactsCompletion)completion
 {
     [self.arrayContacts removeAllObjects];
-    NSArray *keys = @[CNContactIdentifierKey, CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactImageDataAvailableKey, CNContactImageDataKey, CNContactViewController.descriptorForRequiredKeys, CNContactImageDataKey, CNContactThumbnailImageDataKey];
     
     NSError *error = nil;
     NSArray *containers = [self.store containersMatchingPredicate:nil error:&error];
@@ -81,11 +81,8 @@
             
             NSError *errorContainer = nil;
             NSPredicate *predicateContactsContainer = [CNContact predicateForContactsInContainerWithIdentifier:container.identifier];
-            
-            CNContactFetchRequest *fetchRequestContainer = [[CNContactFetchRequest alloc]initWithKeysToFetch:keys];
-            fetchRequestContainer.predicate = predicateContactsContainer;
-            
-            NSArray *arrayContactsInContainer = [self.store unifiedContactsMatchingPredicate:predicateContactsContainer keysToFetch:keys error:&errorContainer];
+    
+            NSArray *arrayContactsInContainer = [self.store unifiedContactsMatchingPredicate:predicateContactsContainer keysToFetch:self.keys error:&errorContainer];
             [self.arrayContacts addObjectsFromArray:arrayContactsInContainer];
             
             if ([container isEqual:[containers lastObject]]) {

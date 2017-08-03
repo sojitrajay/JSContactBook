@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		44429AA91F339CF20077D73A /* ContactTitleAndDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44429AA81F339CF20077D73A /* ContactTitleAndDetailTableViewCell.m */; };
 		44429AB01F33A4940077D73A /* ContactAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44429AAF1F33A4940077D73A /* ContactAddressTableViewCell.m */; };
+		44429AB71F33ACAD0077D73A /* ContactEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44429AB61F33ACAD0077D73A /* ContactEditViewController.m */; };
+		44429ABE1F33B3290077D73A /* ContactEditNameImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44429ABD1F33B3290077D73A /* ContactEditNameImageTableViewCell.m */; };
 		4475940C1F3249D300EAFB47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4475940B1F3249D300EAFB47 /* main.m */; };
 		4475940F1F3249D300EAFB47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4475940E1F3249D300EAFB47 /* AppDelegate.m */; };
 		447594151F3249D300EAFB47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447594131F3249D300EAFB47 /* Main.storyboard */; };
@@ -50,6 +52,10 @@
 		44429AA81F339CF20077D73A /* ContactTitleAndDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTitleAndDetailTableViewCell.m; sourceTree = "<group>"; };
 		44429AAE1F33A4940077D73A /* ContactAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactAddressTableViewCell.h; sourceTree = "<group>"; };
 		44429AAF1F33A4940077D73A /* ContactAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactAddressTableViewCell.m; sourceTree = "<group>"; };
+		44429AB51F33ACAD0077D73A /* ContactEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactEditViewController.h; sourceTree = "<group>"; };
+		44429AB61F33ACAD0077D73A /* ContactEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactEditViewController.m; sourceTree = "<group>"; };
+		44429ABC1F33B3290077D73A /* ContactEditNameImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactEditNameImageTableViewCell.h; sourceTree = "<group>"; };
+		44429ABD1F33B3290077D73A /* ContactEditNameImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactEditNameImageTableViewCell.m; sourceTree = "<group>"; };
 		447594071F3249D300EAFB47 /* JSContactBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSContactBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4475940B1F3249D300EAFB47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4475940D1F3249D300EAFB47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -131,6 +137,25 @@
 				44429AAF1F33A4940077D73A /* ContactAddressTableViewCell.m */,
 			);
 			path = ContactAddressTableViewCell;
+			sourceTree = "<group>";
+		};
+		44429AB41F33ACAD0077D73A /* ContactEditViewController */ = {
+			isa = PBXGroup;
+			children = (
+				44429AB51F33ACAD0077D73A /* ContactEditViewController.h */,
+				44429AB61F33ACAD0077D73A /* ContactEditViewController.m */,
+				44429ABB1F33B3290077D73A /* ContactEditNameImageTableViewCell */,
+			);
+			path = ContactEditViewController;
+			sourceTree = "<group>";
+		};
+		44429ABB1F33B3290077D73A /* ContactEditNameImageTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				44429ABC1F33B3290077D73A /* ContactEditNameImageTableViewCell.h */,
+				44429ABD1F33B3290077D73A /* ContactEditNameImageTableViewCell.m */,
+			);
+			path = ContactEditNameImageTableViewCell;
 			sourceTree = "<group>";
 		};
 		447593FE1F3249D300EAFB47 = {
@@ -229,8 +254,9 @@
 		8C32C0D81F33570000B920DD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8C32C0D91F33570000B920DD /* ContactDetailViewController */,
 				8C32C0DC1F33570000B920DD /* ContactViewController */,
+				8C32C0D91F33570000B920DD /* ContactDetailViewController */,
+				44429AB41F33ACAD0077D73A /* ContactEditViewController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -472,9 +498,11 @@
 				8C32C0E21F33570000B920DD /* ContactDetailViewController.m in Sources */,
 				4475940F1F3249D300EAFB47 /* AppDelegate.m in Sources */,
 				8C32C0E41F33570000B920DD /* ViewController.m in Sources */,
+				44429ABE1F33B3290077D73A /* ContactEditNameImageTableViewCell.m in Sources */,
 				8C32C0EB1F33582300B920DD /* ContactImageTableViewCell.m in Sources */,
 				44429AA91F339CF20077D73A /* ContactTitleAndDetailTableViewCell.m in Sources */,
 				8C32C0E31F33570000B920DD /* ContactTableViewCell.m in Sources */,
+				44429AB71F33ACAD0077D73A /* ContactEditViewController.m in Sources */,
 				8C32C0CD1F332AF400B920DD /* CNContact+JSContact.m in Sources */,
 				447594451F324F4100EAFB47 /* ContactManager.m in Sources */,
 				4475940C1F3249D300EAFB47 /* main.m in Sources */,

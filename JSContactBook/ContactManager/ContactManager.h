@@ -24,6 +24,8 @@ typedef void (^JSContactManagerFetchContactsCompletion)(NSArray *arrayContacts, 
 
 @property (nonatomic) CNContactStore *store;
 @property (nonatomic) NSMutableArray *arrayContacts;
+@property (nonatomic) NSArray *keys;
+
 
 - (void)requestContactManagerWithCompletion:(JSContactManagerCompletion)completion;
 

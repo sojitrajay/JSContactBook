@@ -36,6 +36,8 @@
                                              selector:@selector(cnContactStoreDidChange:)
                                                  name:CNContactStoreDidChangeNotification
                                                object:nil];
+    
+    arrayContact = [[NSMutableArray alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -55,7 +57,6 @@
     }
     
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -132,7 +133,6 @@
 
 -(void)loadContacts
 {
-    arrayContact = [[NSMutableArray alloc] init];
     [[ContactManager sharedContactManager] requestContactManagerWithCompletion:^(BOOL success, NSError *error) {
         if (success) {
             [[ContactManager sharedContactManager] fetchContactsWithCompletion:^(NSArray *arrayContacts, NSError *error) {

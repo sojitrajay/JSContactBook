@@ -10,8 +10,11 @@
 #import "ContactImageTableViewCell.h"
 #import "ContactTitleAndDetailTableViewCell.h"
 #import "ContactAddressTableViewCell.h"
+#import "ContactEditViewController.h"
 
 #import "UIImageView+AGCInitials.h"
+
+#define kSegueContactListToDetail   @"contactDetailToEdit"
 
 typedef enum : NSUInteger {
     ContactCellTypeImage = 0,
@@ -33,11 +36,39 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cnContactStoreDidChange:)
+                                                 name:CNContactStoreDidChangeNotification
+                                               object:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CNContactStoreDidChangeNotification object:nil];
+}
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:kSegueContactListToDetail]) {
+        ContactEditViewController *contactEditVC = [segue destinationViewController];
+        contactEditVC.contact = sender;
+    }
+    
 }
 
 /*
@@ -189,5 +220,19 @@ typedef enum : NSUInteger {
     
 }
 
+#pragma mark - Button Event
+
+- (IBAction)handlerEdit:(id)sender {
+
+    [self performSegueWithIdentifier:kSegueContactListToDetail sender:self.contact];
+}
+
+#pragma mark - Notification
+
+-(IBAction)cnContactStoreDidChange:(id)sender
+{
+    self.contact = [[ContactManager sharedContactManager].store unifiedContactWithIdentifier:self.contact.identifier keysToFetch:[ContactManager sharedContactManager].keys error:nil];
+    [self.tableView reloadData];
+}
 
 @end
