@@ -5,6 +5,7 @@ This application provides will <b>list all contacts of Contacts</b> of iOS devic
 ### Features
 
 - [x] List contacts from the Contacts of device.
+- [x] Display contact details of the selected contact.
 - [x] Add contact into Contact book of device from the application.
 - [x] Update contact of device from the application.
 - [x] Delete contact from the device from application.
