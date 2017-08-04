@@ -1,6 +1,6 @@
 # JSContactBook
 
-This application provides will <b>list all contacts of Contacts</b> of iOS device. It also <b>syncronizes contacts</b> of device with application. 
+This application is used to <b>list all contacts of</b> of iOS device. It also <b>syncronize contacts</b> of the device with application. 
 
 ### Features
 
