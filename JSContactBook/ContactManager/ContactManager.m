@@ -71,7 +71,7 @@
  */
 -(void)fetchContactsWithCompletion:(JSContactManagerFetchContactsCompletion)completion
 {
-    [self.arrayContacts removeAllObjects];
+    self.arrayContacts = [[NSMutableArray alloc] init];
     
     NSError *error = nil;
     NSArray *containers = [self.store containersMatchingPredicate:nil error:&error];

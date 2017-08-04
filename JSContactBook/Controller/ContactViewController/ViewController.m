@@ -41,6 +41,7 @@
                                                object:nil];
     
     arrayContact = [[NSMutableArray alloc] init];
+    [self loadContacts];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -57,7 +58,6 @@
     else
     {
         [self.viewNoData setHidden:YES];
-        [self loadContacts];
     }
     
 }
