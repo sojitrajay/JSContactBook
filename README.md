@@ -4,7 +4,7 @@ This application is used to <b>list all contacts of</b> the iOS device. It also 
 
 ### Features
 
-- [x] List contacts from the Contacts of device.
+- [x] List contacts from the Contacts of the iOS device.
 - [x] Display contact details of the selected contact.
 - [x] Add contact into Contact book of device from the application.
 - [x] Update contact of device from the application.
