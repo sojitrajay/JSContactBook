@@ -23,6 +23,8 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *viewNoData;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonItemAdd;
 
 
 @end
@@ -44,7 +46,20 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadContacts];
+    
+    
+    CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+    if( status == CNAuthorizationStatusDenied || status == CNAuthorizationStatusRestricted)
+    {
+        NSLog(@"access denied");
+        [self.viewNoData setHidden:NO];
+    }
+    else
+    {
+        [self.viewNoData setHidden:YES];
+        [self loadContacts];
+    }
+    
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
