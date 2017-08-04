@@ -389,6 +389,108 @@
                                             <outlet property="textFieldLastName" destination="P1Z-HW-WSK" id="3Ex-O5-TUU"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactEditAddDataTableViewCell" id="ih5-Gm-RnC" customClass="ContactEditAddDataTableViewCell">
+                                        <rect key="frame" x="0.0" y="112" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ih5-Gm-RnC" id="n7n-Eo-77z">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIQ-eM-04v">
+                                                    <rect key="frame" x="8" y="2.5" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="B2Z-yd-7IH"/>
+                                                        <constraint firstAttribute="height" constant="40" id="n4X-D9-u25"/>
+                                                    </constraints>
+                                                    <state key="normal" image="plus"/>
+                                                </button>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="add phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gCw-dq-DnX">
+                                                    <rect key="frame" x="56" y="12" width="256" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="wbH-5a-tdi"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="SIQ-eM-04v" firstAttribute="leading" secondItem="n7n-Eo-77z" secondAttribute="leading" constant="8" id="ATo-o5-8jd"/>
+                                                <constraint firstItem="gCw-dq-DnX" firstAttribute="centerY" secondItem="n7n-Eo-77z" secondAttribute="centerY" id="B69-MP-5rh"/>
+                                                <constraint firstAttribute="trailing" secondItem="gCw-dq-DnX" secondAttribute="trailing" constant="8" id="Ro6-54-uj4"/>
+                                                <constraint firstItem="gCw-dq-DnX" firstAttribute="leading" secondItem="SIQ-eM-04v" secondAttribute="trailing" constant="8" id="a51-DI-MT2"/>
+                                                <constraint firstItem="SIQ-eM-04v" firstAttribute="centerY" secondItem="n7n-Eo-77z" secondAttribute="centerY" id="vev-1a-kWY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="buttonAdd" destination="SIQ-eM-04v" id="RI0-Nq-OUu"/>
+                                            <outlet property="labelTitle" destination="gCw-dq-DnX" id="NYZ-Ka-xow"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactEditAddDetailTableViewCell" id="KiY-Jd-f0Z" customClass="ContactEditAddDetailTableViewCell">
+                                        <rect key="frame" x="0.0" y="156" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KiY-Jd-f0Z" id="mfV-38-ku0">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWr-xd-lUG">
+                                                    <rect key="frame" x="8" y="2" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="obD-EB-s1a"/>
+                                                        <constraint firstAttribute="height" constant="40" id="uF8-B2-HyZ"/>
+                                                    </constraints>
+                                                    <state key="normal" image="remove">
+                                                        <color key="titleColor" red="0.0" green="0.93333333330000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pXk-0U-h62">
+                                                    <rect key="frame" x="136" y="12" width="176" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="GKV-OX-dOR"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9N-yQ-ZpQ">
+                                                    <rect key="frame" x="48" y="11" width="75" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="Rsc-gi-YjD"/>
+                                                        <constraint firstAttribute="height" constant="22" id="hcZ-Zb-Ssd"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="iPhone" image="right_arrow">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uqx-sC-QDj">
+                                                    <rect key="frame" x="127" y="0.0" width="1" height="44"/>
+                                                    <color key="backgroundColor" red="0.7843137255" green="0.77647058820000003" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1" id="6jG-JX-nec"/>
+                                                        <constraint firstAttribute="width" constant="1" id="I5I-kP-g0B"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="W9N-yQ-ZpQ" firstAttribute="centerY" secondItem="mfV-38-ku0" secondAttribute="centerY" id="JWP-Dd-w54"/>
+                                                <constraint firstItem="pXk-0U-h62" firstAttribute="leading" secondItem="Uqx-sC-QDj" secondAttribute="trailing" constant="8" id="Jbc-gs-Pv5"/>
+                                                <constraint firstItem="Uqx-sC-QDj" firstAttribute="top" secondItem="mfV-38-ku0" secondAttribute="top" id="Tcq-xQ-fhX"/>
+                                                <constraint firstAttribute="trailing" secondItem="pXk-0U-h62" secondAttribute="trailing" constant="8" id="cKk-RN-Mwr"/>
+                                                <constraint firstAttribute="bottom" secondItem="Uqx-sC-QDj" secondAttribute="bottom" id="ejl-oj-eei"/>
+                                                <constraint firstItem="pXk-0U-h62" firstAttribute="centerY" secondItem="mfV-38-ku0" secondAttribute="centerY" id="hWU-KQ-y5P"/>
+                                                <constraint firstItem="IWr-xd-lUG" firstAttribute="centerY" secondItem="mfV-38-ku0" secondAttribute="centerY" id="nwD-6H-7Vx"/>
+                                                <constraint firstItem="Uqx-sC-QDj" firstAttribute="leading" secondItem="W9N-yQ-ZpQ" secondAttribute="trailing" constant="4" id="pmq-cw-FfI"/>
+                                                <constraint firstItem="IWr-xd-lUG" firstAttribute="leading" secondItem="mfV-38-ku0" secondAttribute="leading" constant="8" id="t0X-IH-QCJ"/>
+                                                <constraint firstItem="W9N-yQ-ZpQ" firstAttribute="leading" secondItem="IWr-xd-lUG" secondAttribute="trailing" id="wGi-Uf-ocN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="buttonDetailType" destination="W9N-yQ-ZpQ" id="TfG-jw-REF"/>
+                                            <outlet property="textFieldValue" destination="pXk-0U-h62" id="FW7-bX-RFi"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Z1s-1s-nBc" id="924-pA-QNo"/>
@@ -440,8 +542,11 @@
     </scenes>
     <resources>
         <image name="add" width="25" height="25"/>
+        <image name="plus" width="25" height="25"/>
+        <image name="remove" width="25" height="25"/>
+        <image name="right_arrow" width="7" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cB8-wZ-LEt"/>
+        <segue reference="zhe-91-52O"/>
     </inferredMetricsTieBreakers>
 </document>

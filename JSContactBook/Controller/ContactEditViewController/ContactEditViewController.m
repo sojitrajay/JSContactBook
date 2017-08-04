@@ -8,11 +8,14 @@
 
 #import "ContactEditViewController.h"
 #import "ContactEditNameImageTableViewCell.h"
+#import "ContactEditAddDataTableViewCell.h"
+#import "ContactEditAddDetailTableViewCell.h"
+
 #import "UIImageView+AGCInitials.h"
 
 typedef enum : NSUInteger {
     ContactEditCellTypeImage = 0,
-//    ContactEditCellTypePhone,
+    ContactEditCellTypePhone,
 //    ContactEditCellTypeEmail,
 //    ContactEditCellTypeAddress,
 //    ContactEditCellTypeBirthDay,
@@ -20,7 +23,7 @@ typedef enum : NSUInteger {
 } ContactEditCellType;
 
 
-@interface ContactEditViewController ()
+@interface ContactEditViewController ()<UITextFieldDelegate>
 {
     CNContact *tempContact;
 }
@@ -55,9 +58,9 @@ typedef enum : NSUInteger {
     if (section == ContactEditCellTypeImage) {
         return 1;
     }
-//    else if (section == ContactCellTypePhone) {
-//        return self.contact.phoneNumbers.count;
-//    }
+    else if (section == ContactEditCellTypePhone) {
+        return self.contact.phoneNumbers.count + 1;
+    }
 //    else if (section == ContactCellTypeEmail) {
 //        return self.contact.emailAddresses.count;
 //    }
@@ -80,9 +83,10 @@ typedef enum : NSUInteger {
     if (indexPath.section == ContactEditCellTypeImage) {
         return 84.0f;
     }
-//    else if (indexPath.section == ContactCellTypePhone || indexPath.section == ContactCellTypeEmail || indexPath.section == ContactCellTypeBirthDay){
-//        return 56.0f;
-//    }
+    else if (indexPath.section == ContactEditCellTypePhone) // || indexPath.section == ContactCellTypeEmail || indexPath.section == ContactCellTypeBirthDay)
+    {
+        return 44.0f;
+    }
 //    else if (indexPath.section == ContactCellTypeAddress)
 //    {
 //        return UITableViewAutomaticDimension;
@@ -95,10 +99,10 @@ typedef enum : NSUInteger {
     if (indexPath.section == ContactEditCellTypeImage) {
         return 84.0f;
     }
-//    else if (indexPath.section == ContactCellTypePhone || indexPath.section == ContactCellTypeEmail || indexPath.section == ContactCellTypeAddress || indexPath.section == ContactCellTypeBirthDay)
-//    {
-//        return 56.0f;
-//    }
+    else if (indexPath.section == ContactEditCellTypePhone) // || indexPath.section == ContactCellTypeEmail || indexPath.section == ContactCellTypeAddress || indexPath.section == ContactCellTypeBirthDay)
+    {
+        return 44.0f;
+    }
     return 44.0f;
 }
 
@@ -131,7 +135,41 @@ typedef enum : NSUInteger {
         
         return cell;
     }
-//    else if (indexPath.section == ContactCellTypePhone || indexPath.section == ContactCellTypeEmail || indexPath.section == ContactCellTypeBirthDay)
+    else if (indexPath.section == ContactEditCellTypePhone)
+    {
+        if (indexPath.row == self.contact.phoneNumbers.count) {
+            ContactEditAddDataTableViewCell *cell = (ContactEditAddDataTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactEditAddDataTableViewCell class]) forIndexPath:indexPath];
+            
+            [cell.labelTitle setText:@"add phone"];
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
+            return cell;
+        }
+        else
+        {
+            ContactEditAddDetailTableViewCell *cell = (ContactEditAddDetailTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactEditAddDetailTableViewCell class]) forIndexPath:indexPath];
+            
+            CNLabeledValue<CNPhoneNumber*> *phoneNumber = [self itemAtIndexPath:indexPath];
+            CNPhoneNumber *number = phoneNumber.value;
+            NSString *digits = number.stringValue;
+            NSString *label = [CNLabeledValue localizedStringForLabel:phoneNumber.label];
+            [cell.buttonDetailType setTitle:label forState:UIControlStateNormal];
+            [cell.textFieldValue setText:digits];
+
+            // Add a "textFieldDidChange" notification method to the text field control.
+            [cell.textFieldValue addTarget:self
+                          action:@selector(textFieldDidChange:)
+                forControlEvents:UIControlEventEditingChanged];
+
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
+            return cell;
+        }
+    }
+    
+//    else if (indexPath.section == ContactEditCellTypePhone || indexPath.section == ContactCellTypeEmail || indexPath.section == ContactCellTypeBirthDay)
 //    {
 //        ContactTitleAndDetailTableViewCell *cell = (ContactTitleAndDetailTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactTitleAndDetailTableViewCell class]) forIndexPath:indexPath];
 //        
@@ -205,6 +243,7 @@ typedef enum : NSUInteger {
     if (ContactEditCellTypeCount>0)
     {
         for (int section = 0; section<ContactEditCellTypeCount; section++) {
+            
             if (section == ContactEditCellTypeImage) {
                 
                 ContactEditNameImageTableViewCell *cell = (ContactEditNameImageTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:ContactEditCellTypeImage]];
@@ -214,10 +253,29 @@ typedef enum : NSUInteger {
                 
             }
             
-            //    NSInteger rows = [self.tableView numberOfRowsInSection:section];
-            //    for (int i = 0; i<rows; i++) {
-            //
-            //    }
+            if (section == ContactEditCellTypePhone) {
+                
+                NSMutableArray *arrayPhoneNumber = [[NSMutableArray alloc] init];
+                
+                NSInteger rows = [self.tableView numberOfRowsInSection:section] - 1;
+                for (int row = 0; row<rows; row++) {
+                    
+                    ContactEditAddDetailTableViewCell *cell = (ContactEditAddDetailTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:ContactEditCellTypePhone]];
+                    
+                    if (cell.textFieldValue.text.length>0) {
+                        
+                        CNPhoneNumber * phone =[CNPhoneNumber phoneNumberWithStringValue:cell.textFieldValue.text];
+                        CNLabeledValue *phoneNumber = [CNLabeledValue labeledValueWithLabel:CNLabelPhoneNumberiPhone value:phone];
+                        [arrayPhoneNumber addObject:phoneNumber];
+                        
+                    }
+                
+                }
+                
+                mutableContact.phoneNumbers = [arrayPhoneNumber mutableCopy];
+
+            }
+            
             
         }
         
@@ -257,6 +315,36 @@ typedef enum : NSUInteger {
 {
     self.contact = [[ContactManager sharedContactManager].store unifiedContactWithIdentifier:self.contact.identifier keysToFetch:[ContactManager sharedContactManager].keys error:nil];
     [self.tableView reloadData];
+}
+
+#pragma mark - Text Field Delgate Method
+
+-(IBAction)textFieldDidChange:(UITextField *)textField{
+    
+    CGPoint textFieldOrigin = [self.tableView convertPoint:textField.bounds.origin fromView:textField];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:textFieldOrigin];
+    
+    if (indexPath.section == ContactEditCellTypePhone) {
+        
+        
+    }
+
+    NSLog(@"%@",indexPath);
+    
+}
+
+-(id)itemAtIndexPath:(NSIndexPath*)indexPath
+{
+    if (indexPath.section == ContactEditCellTypePhone) {
+        
+        NSArray<CNLabeledValue<CNPhoneNumber*>*> *arrayPhonenumbers = self.contact.phoneNumbers;
+        CNLabeledValue<CNPhoneNumber*> *phoneNumber = [arrayPhonenumbers objectAtIndex:indexPath.row];
+        return phoneNumber;
+       
+    }
+
+    return nil;
+    
 }
 
 @end
