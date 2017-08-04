@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IqM-zm-oeU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IqM-zm-oeU">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="XPS-GE-Pu9">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactTableViewCell" id="I6p-hd-tXn" customClass="ContactTableViewCell">
@@ -69,10 +69,10 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVX-kw-CBL">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please provide access to contact from settings to use the application." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLY-Yb-z8N">
-                                        <rect key="frame" x="8" y="8" width="304" height="488"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -80,22 +80,22 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="ZLY-Yb-z8N" firstAttribute="top" secondItem="RVX-kw-CBL" secondAttribute="top" constant="8" id="A0u-8J-AI2"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZLY-Yb-z8N" secondAttribute="trailing" constant="8" id="GuK-FI-pGn"/>
-                                    <constraint firstItem="ZLY-Yb-z8N" firstAttribute="leading" secondItem="RVX-kw-CBL" secondAttribute="leading" constant="8" id="qsH-0p-qeC"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZLY-Yb-z8N" secondAttribute="bottom" constant="8" id="yWR-TI-Nho"/>
+                                    <constraint firstItem="ZLY-Yb-z8N" firstAttribute="top" secondItem="RVX-kw-CBL" secondAttribute="top" id="A0u-8J-AI2"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZLY-Yb-z8N" secondAttribute="trailing" id="GuK-FI-pGn"/>
+                                    <constraint firstItem="ZLY-Yb-z8N" firstAttribute="leading" secondItem="RVX-kw-CBL" secondAttribute="leading" id="qsH-0p-qeC"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZLY-Yb-z8N" secondAttribute="bottom" id="yWR-TI-Nho"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="RVX-kw-CBL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2ac-aH-PqE"/>
+                            <constraint firstItem="XPS-GE-Pu9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4X3-Hr-xOk"/>
+                            <constraint firstItem="XPS-GE-Pu9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="6cT-vG-0yS"/>
                             <constraint firstItem="RVX-kw-CBL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="8Vn-8P-EAe"/>
-                            <constraint firstItem="XPS-GE-Pu9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="CMz-Oe-h6s"/>
-                            <constraint firstItem="XPS-GE-Pu9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Cmi-mr-Nw5"/>
+                            <constraint firstAttribute="trailing" secondItem="XPS-GE-Pu9" secondAttribute="trailing" id="Dib-9s-8py"/>
                             <constraint firstAttribute="trailing" secondItem="RVX-kw-CBL" secondAttribute="trailing" id="L8U-C4-JrP"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XPS-GE-Pu9" secondAttribute="bottom" id="QZe-ks-JcL"/>
-                            <constraint firstAttribute="trailing" secondItem="XPS-GE-Pu9" secondAttribute="trailing" id="hCi-FJ-c5C"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XPS-GE-Pu9" secondAttribute="bottom" id="UzM-RA-lsg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RVX-kw-CBL" secondAttribute="bottom" id="l6x-xC-RSd"/>
                         </constraints>
                     </view>
@@ -126,11 +126,11 @@
                         <viewControllerLayoutGuide type="bottom" id="t48-J9-ire"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FGm-ud-BmD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xmg-Hp-1G1">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactImageTableViewCell" rowHeight="144" id="89j-dV-qmR" customClass="ContactImageTableViewCell">
@@ -261,10 +261,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Xmg-Hp-1G1" firstAttribute="leading" secondItem="FGm-ud-BmD" secondAttribute="leading" id="Fe9-f9-51H"/>
-                            <constraint firstItem="t48-J9-ire" firstAttribute="top" secondItem="Xmg-Hp-1G1" secondAttribute="bottom" id="LMh-X9-ztR"/>
-                            <constraint firstAttribute="trailing" secondItem="Xmg-Hp-1G1" secondAttribute="trailing" id="VOt-Nr-7E1"/>
-                            <constraint firstItem="Xmg-Hp-1G1" firstAttribute="top" secondItem="eC2-Qc-wmW" secondAttribute="bottom" id="zY2-Yj-VH8"/>
+                            <constraint firstItem="Xmg-Hp-1G1" firstAttribute="leading" secondItem="FGm-ud-BmD" secondAttribute="leading" id="1Hf-qE-POw"/>
+                            <constraint firstAttribute="trailing" secondItem="Xmg-Hp-1G1" secondAttribute="trailing" id="C1h-FF-bf6"/>
+                            <constraint firstItem="Xmg-Hp-1G1" firstAttribute="top" secondItem="eC2-Qc-wmW" secondAttribute="bottom" id="CaW-WE-lob"/>
+                            <constraint firstItem="t48-J9-ire" firstAttribute="top" secondItem="Xmg-Hp-1G1" secondAttribute="bottom" id="Zhg-8H-alQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Siq-Uj-Vhn">
@@ -526,7 +526,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IqM-zm-oeU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gbM-Fu-PXZ">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="gbM-Fu-PXZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
