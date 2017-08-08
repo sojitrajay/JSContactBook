@@ -184,8 +184,27 @@
     }];
 }
 
--(IBAction)cnContactStoreDidChange:(id)sender
+-(IBAction)cnContactStoreDidChange:(NSNotification*)notification
 {
+    NSDictionary *userInfoObject = notification.userInfo;
+    if (userInfoObject!=nil) {
+        NSArray *cnNotificationSaveIdentifiersKey = [userInfoObject objectForKey:@"CNNotificationSaveIdentifiersKey"];
+        if (cnNotificationSaveIdentifiersKey!=nil) {
+            
+            [cnNotificationSaveIdentifiersKey enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                NSError *error = nil;
+                CNContact *contact = [[ContactManager sharedContactManager].store unifiedContactWithIdentifier:obj keysToFetch:[ContactManager sharedContactManager].keys error:&error];
+                if (contact) {
+                    NSLog(@"%@ %@",contact.familyName,contact.givenName);
+                }
+                
+            }];
+            
+        }
+        
+        NSLog(@"%@",cnNotificationSaveIdentifiersKey);
+    }
     [self loadContacts];
 }
 
