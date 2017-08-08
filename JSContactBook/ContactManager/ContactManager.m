@@ -152,4 +152,41 @@
     }
 }
 
+/**
+ *  @author Jayesh Sojitra
+ *
+ *  This method is used to add contact if contact does not exist and if there is any existing contact then it will update into it.
+ *
+ */
+- (void)addOrUpdateContact:(CNMutableContact*)mutableContact withCompletion:(JSContactManagerUpdateContactsCompletion)completion
+{
+    if (![self checkIfContactExist:mutableContact]) {
+        [self addContact:mutableContact withCompletion:^(BOOL success, NSError *error) {
+            completion(success, error);
+        }];
+    }
+    else
+    {
+        [self updateContact:mutableContact withCompletion:^(BOOL success, NSError *error) {
+            completion(success, error);
+        }];
+    }
+}
+
+/**
+ *  @author Jayesh Sojitra
+ *
+ *  Check if particular contact exist in the application.
+ *
+ */
+- (BOOL)checkIfContactExist:(CNContact*)contact
+{
+    NSError *error;
+    [self.store unifiedContactWithIdentifier:contact.identifier keysToFetch:self.keys error:&error];
+    if (error==nil) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

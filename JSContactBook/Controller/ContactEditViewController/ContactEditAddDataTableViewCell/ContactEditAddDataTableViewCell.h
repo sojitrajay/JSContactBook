@@ -11,6 +11,6 @@
 @interface ContactEditAddDataTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *buttonAdd;
-@property (weak, nonatomic) IBOutlet UITextField *labelTitle;
+@property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 
 @end

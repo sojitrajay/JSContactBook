@@ -38,4 +38,8 @@ typedef void (^JSContactManagerUpdateContactsCompletion)(BOOL success, NSError *
 
 - (void)addContact:(CNMutableContact*)mutableContact withCompletion:(JSContactManagerUpdateContactsCompletion)completion;
 
+- (void)addOrUpdateContact:(CNMutableContact*)mutableContact withCompletion:(JSContactManagerUpdateContactsCompletion)completion;
+
+- (BOOL)checkIfContactExist:(CNContact*)contact;
+
 @end

@@ -67,6 +67,7 @@ typedef enum : NSUInteger {
     if ([segue.identifier isEqualToString:kSegueContactListToDetail]) {
         ContactEditViewController *contactEditVC = [segue destinationViewController];
         contactEditVC.contact = sender;
+        contactEditVC.mutableContact = ((CNContact*)sender).mutableCopy;
         contactEditVC.screenMode = ScreemModeEdit;
     }
     

@@ -17,6 +17,7 @@ typedef enum : NSUInteger {
 @interface ContactEditViewController : UIViewController
 
 @property (nonatomic) CNContact *contact;
+@property (nonatomic) CNMutableContact *mutableContact;
 
 @property (nonatomic) ScreemMode screenMode;
 
