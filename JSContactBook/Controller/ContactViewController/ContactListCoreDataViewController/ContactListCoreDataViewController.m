@@ -1,23 +1,19 @@
-//
-//  ViewController.m
+    //
+//  ContactListCoreDataViewController.m
 //  JSContactBook
 //
-//  Created by Jayesh on 8/2/17.
+//  Created by Jayesh on 09/08/17.
 //  Copyright © 2017 Jayesh. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "ContactTableViewCell.h"
-#import "ContactDetailViewController.h"
-#import "ContactEditViewController.h"
-
-#import "UIImageView+AGCInitials.h"
-
+#import "ContactListCoreDataViewController.h"
 #import "ContactManager.h"
+#import "CoreDataManager.h"
+#import "ContactTableViewCell.h"
+#import "UIImageView+AGCInitials.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
-#define kSegueContactListToDetail   @"contactListToDetail"
-
-@interface ViewController ()
+@interface ContactListCoreDataViewController ()
 {
     NSMutableArray *arrayContact;
 }
@@ -26,24 +22,22 @@
 @property (weak, nonatomic) IBOutlet UIView *viewNoData;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonItemAdd;
 
-
 @end
 
-@implementation ViewController
+@implementation ContactListCoreDataViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(cnContactStoreDidChange:)
                                                  name:CNContactStoreDidChangeNotification
                                                object:nil];
     
-    arrayContact = [[NSMutableArray alloc] init];
+    arrayContact = [[CoreDataManager sharedCoreData].managedObjectContext getAllDataForEntity:NSStringFromClass([JSContact class])].mutableCopy;
     [self loadContacts];
     
-    [CoreDataManager sharedCoreData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -69,16 +63,11 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    if ([segue.identifier isEqualToString:kSegueContactListToDetail]) {
-        ContactDetailViewController *contactDetailVC = [segue destinationViewController];
-        contactDetailVC.contact = sender;
-    }
+//    if ([segue.identifier isEqualToString:kSegueContactListToDetail]) {
+//        ContactDetailViewController *contactDetailVC = [segue destinationViewController];
+//        contactDetailVC.contact = sender;
+//    }
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void) dealloc
@@ -95,28 +84,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CNContact *contact = [arrayContact objectAtIndex:indexPath.row];
-
+    JSContact *contact = [arrayContact objectAtIndex:indexPath.row];
+    
     ContactTableViewCell *cell = (ContactTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactTableViewCell class]) forIndexPath:indexPath];
     
     if (contact!=nil) {
-
+        
         // Set name
-        [cell.labelContactName setAttributedText:contact.displayName];
-
-//      Used to display name using CNContactFormatter in application. But it doesn't display same as iOS contact book.
-//        CNContactFormatter *formatter = [[CNContactFormatter alloc] init];
-//        formatter.style = CNContactFormatterStylePhoneticFullName;
-//        [cell.labelContactName setText:[formatter stringFromContact:contact]];
+        [cell.labelContactName setText:[NSString stringWithFormat:@"%@ %@",contact.givenName, contact.familyName]];
+        
+        //      Used to display name using CNContactFormatter in application. But it doesn't display same as iOS contact book.
+        //        CNContactFormatter *formatter = [[CNContactFormatter alloc] init];
+        //        formatter.style = CNContactFormatterStylePhoneticFullName;
+        //        [cell.labelContactName setText:[formatter stringFromContact:contact]];
         
         // Set image
-        if (contact.imageData!=nil && contact.thumbnailImageData!=nil) {
-            [cell.imageViewThumbContact setImage:[UIImage imageWithData:(contact.thumbnailImageData!=nil)?contact.thumbnailImageData:contact.imageData]];
-        }
-        else
-        {
-            [cell.imageViewThumbContact agc_setImageWithInitialsFromName:contact.displayName.string];
-        }
+//        if (contact.imageData!=nil && contact.thumbnailImageData!=nil) {
+//            [cell.imageViewThumbContact setImage:[UIImage imageWithData:(contact.thumbnailImageData!=nil)?contact.thumbnailImageData:contact.imageData]];
+//        }
+//        else
+//        {
+//            [cell.imageViewThumbContact agc_setImageWithInitialsFromName:contact.displayName.string];
+//        }
         
         [cell.imageViewThumbContact.layer setCornerRadius:cell.imageViewThumbContact.frame.size.width/2];
         cell.imageViewThumbContact.clipsToBounds = YES;
@@ -124,10 +113,10 @@
     }
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-
+    
     return cell;
 }
-    
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
@@ -136,15 +125,15 @@
 
 -(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    CNContact *contact = [arrayContact objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:kSegueContactListToDetail sender:contact];
+//    CNContact *contact = [arrayContact objectAtIndex:indexPath.row];
+//    [self performSegueWithIdentifier:kSegueContactListToDetail sender:contact];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         CNContact *contact = [arrayContact objectAtIndex:indexPath.row];
-
+        
         [[ContactManager sharedContactManager] deleteContact:contact.mutableCopy withCompletion:^(BOOL success, NSError *error) {
             
             if (success) {
@@ -165,49 +154,37 @@
 
 -(void)loadContacts
 {
+    
     [[ContactManager sharedContactManager] requestContactManagerWithCompletion:^(BOOL success, NSError *error) {
         if (success) {
+            if (arrayContact.count<=0) {
+                [SVProgressHUD show];
+            }
             [[ContactManager sharedContactManager] fetchContactsWithCompletion:^(NSArray *arrayContacts, NSError *error) {
                 
-                arrayContact = [arrayContacts mutableCopy];
+                arrayContact = [[CoreDataManager sharedCoreData].managedObjectContext getAllDataForEntity:NSStringFromClass([JSContact class])].mutableCopy;
                 NSLog(@"%@",arrayContacts);
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
+                    [SVProgressHUD dismiss];
                 });
-                
+
             }];
             
         }
         else
         {
+            [SVProgressHUD dismiss];
             NSLog(@"No access to contacts...");
         }
     }];
 }
 
--(IBAction)cnContactStoreDidChange:(NSNotification*)notification
+-(IBAction)cnContactStoreDidChange:(id)sender
 {
-    NSDictionary *userInfoObject = notification.userInfo;
-    if (userInfoObject!=nil) {
-        NSArray *cnNotificationSaveIdentifiersKey = [userInfoObject objectForKey:@"CNNotificationSaveIdentifiersKey"];
-        if (cnNotificationSaveIdentifiersKey!=nil) {
-            
-            [cnNotificationSaveIdentifiersKey enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                NSError *error = nil;
-                CNContact *contact = [[ContactManager sharedContactManager].store unifiedContactWithIdentifier:obj keysToFetch:[ContactManager sharedContactManager].keys error:&error];
-                if (contact) {
-                    NSLog(@"%@ %@",contact.familyName,contact.givenName);
-                }
-                
-            }];
-            
-        }
-        
-        NSLog(@"%@",cnNotificationSaveIdentifiersKey);
-    }
     [self loadContacts];
 }
+
 
 @end

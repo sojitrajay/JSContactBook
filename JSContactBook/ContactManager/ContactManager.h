@@ -15,6 +15,8 @@
 
 #import "CNContact+JSContact.h"
 
+#import "CoreDataManager.h"
+
 typedef void (^JSContactManagerCompletion)(BOOL success, NSError *error);
 typedef void (^JSContactManagerFetchContactsCompletion)(NSArray *arrayContacts, NSError *error);
 typedef void (^JSContactManagerUpdateContactsCompletion)(BOOL success, NSError *error);
