@@ -10,6 +10,16 @@
 
 @implementation ContactManager
 
+#define kIsContactCached            @"IsContactCached"
+
+#define kContactOperationAdd        @"Add"
+#define kContactOperationUpdated    @"Updated"
+#define kContactOperationDeleted    @"Updated"
+
+#define kFieldTypeContact           @"Contact"
+#define kFieldTypePhoneNumber       @"PhoneNumber"
+
+
 /**
  *  @author Jayesh Sojitra
  *
@@ -81,14 +91,26 @@
             
             NSError *errorContainer = nil;
             NSPredicate *predicateContactsContainer = [CNContact predicateForContactsInContainerWithIdentifier:container.identifier];
-    
+            
             NSArray *arrayContactsInContainer = [self.store unifiedContactsMatchingPredicate:predicateContactsContainer keysToFetch:self.keys error:&errorContainer];
             [self.arrayContacts addObjectsFromArray:arrayContactsInContainer];
             
+            NSError *fetchContacts = nil;
             if ([container isEqual:[containers lastObject]]) {
-                completion(self.arrayContacts,error);
+                
+                // Synchronise contacts with database in background.
+                BOOL cacheContacts = [self cacheContacts:self.arrayContacts error:&fetchContacts];
+                if (cacheContacts) {
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kIsContactCached];
+                    completion(self.arrayContacts,error);
+                }
+                else
+                {
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kIsContactCached];
+                    completion(nil,error);
+                }
             }
-
+            
         }];
     }
     else
@@ -186,6 +208,82 @@
     if (error==nil) {
         return YES;
     }
+    return NO;
+}
+
+/**
+ * Cache Contacts
+ */
+-(BOOL)cacheContacts:(NSArray<CNContact*>*)contacts error:(NSError * __autoreleasing *)error
+{
+    NSLog(@"%@",([CoreDataManager sharedCoreData].managedObjectContext!=nil)?@"Core Data Exist":@"Core Data Does Not Exist");
+    
+    // Create a context on a private queue to fetch existing quakes to compare with incoming data and create new quakes as required.
+    NSManagedObjectContext *taskContext = kAppDelegate.persistentContainer.newBackgroundContext;
+    if (!taskContext) {
+        return NO;
+    }
+    
+    if (![self importFromContactsArray:contacts usingContext:taskContext error:error]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)importFromContactsArray:(NSArray<CNContact*>*)contacts usingContext:(NSManagedObjectContext *)taskContext
+                          error:(NSError * __autoreleasing *)error {
+    
+    [taskContext performBlockAndWait:^{
+        
+        for (CNContact *contact in contacts) {
+            
+            BOOL checkForUpdate = [self checkIfNewContact:contact ForContext:taskContext];
+            
+            JSContact *conactEntity = [taskContext insertIntoEntity:NSStringFromClass([JSContact class]) AgainstConditions:@"contactIdntifier = %@",contact.identifier];
+            [conactEntity updateFromContact:contact withContext:taskContext checkForUpdate:checkForUpdate];
+        }
+        
+        if ([taskContext hasChanges]) {
+            
+            if (![taskContext save:error]) {
+                return;
+            }
+            [taskContext reset];
+        }
+    }];
+    
+    return *error ? NO : YES;
+}
+
+/**
+ * Manage History
+ */
+
+-(BOOL)checkIfNewContact:(CNContact*)contact ForContext:(NSManagedObjectContext*)context
+{
+    // If contacts are cached then only we need to load history.
+    BOOL isContactCached = [[NSUserDefaults standardUserDefaults] boolForKey:kIsContactCached];
+    if (isContactCached) {
+        
+        NSArray *arrayContacts = [context getDataForEntity:NSStringFromClass([JSContactHistory class]) Where:@"contactId = %@",contact.identifier];
+        NSInteger count = [context getAllDataForEntity:NSStringFromClass([JSContactHistory class])].count;
+        JSContactHistory *conactEntity = [context insertIntoEntity:NSStringFromClass([JSContactHistory class])];
+        if (arrayContacts.count<=0) {
+            // Newly added contact
+            conactEntity.historyId = (int32_t)count+1;
+            conactEntity.contactId = contact.identifier;
+            conactEntity.operation = kContactOperationAdd;
+            conactEntity.fieldType = kFieldTypeContact;
+            return NO;
+        }
+        else
+        {
+            conactEntity.operation = kContactOperationUpdated;
+            return YES;
+        }
+    }
+    
     return NO;
 }
 
