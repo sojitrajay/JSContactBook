@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JSContact : NSManagedObject
 
-- (void)updateFromContact:(CNContact *)contact withContext:(NSManagedObjectContext*)context checkForUpdate:(BOOL)checkForUpdate;
+- (void)updateFromContact:(CNContact *)contact withContext:(NSManagedObjectContext*)context;
 
 @end
 

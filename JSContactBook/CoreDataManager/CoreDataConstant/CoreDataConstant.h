@@ -15,4 +15,13 @@
 
 #define kAppDelegate                    ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
+#define kIsContactCached            @"IsContactCached"
+
+#define kContactOperationAdd        @"Add"
+#define kContactOperationUpdated    @"Updated"
+#define kContactOperationDeleted    @"Deleted"
+
+#define kFieldTypeContact           @"Contact"
+#define kFieldTypePhoneNumber       @"PhoneNumber"
+
 #endif /* CoreDataConstant_h */

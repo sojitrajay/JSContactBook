@@ -18,6 +18,7 @@
 @dynamic contactIdntifier;
 @dynamic familyName;
 @dynamic givenName;
+@dynamic displayName;
 @dynamic has_phone_numbers;
 
 @end

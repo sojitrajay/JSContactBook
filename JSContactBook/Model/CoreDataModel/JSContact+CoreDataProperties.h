@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *contactIdntifier;
 @property (nullable, nonatomic, copy) NSString *familyName;
 @property (nullable, nonatomic, copy) NSString *givenName;
+@property (nullable, nonatomic, copy) NSString *displayName;
 @property (nullable, nonatomic, retain) NSSet<JSPhoneNumber *> *has_phone_numbers;
 
 @end

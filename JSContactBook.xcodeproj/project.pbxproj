@@ -21,6 +21,8 @@
 		447594451F324F4100EAFB47 /* ContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 447594441F324F4100EAFB47 /* ContactManager.m */; };
 		44AC2CEC1F33DF670081041A /* ContactEditAddDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AC2CEB1F33DF670081041A /* ContactEditAddDataTableViewCell.m */; };
 		44AC2CF31F33E23C0081041A /* ContactEditAddDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AC2CF21F33E23C0081041A /* ContactEditAddDetailTableViewCell.m */; };
+		44D96CF51F3B540100CE1839 /* ContactHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D96CF41F3B540100CE1839 /* ContactHistoryViewController.m */; };
+		44D96CFC1F3B547400CE1839 /* CallHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D96CFB1F3B547400CE1839 /* CallHistoryTableViewCell.m */; };
 		51BF833E08018DC7F40217BB /* Pods_JSContactBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 204ACE60C35DFD6307F9A4F1 /* Pods_JSContactBook.framework */; };
 		8C32C0CD1F332AF400B920DD /* CNContact+JSContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0CC1F332AF400B920DD /* CNContact+JSContact.m */; };
 		8C32C0D41F332E8700B920DD /* NSAttributedString+JSAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32C0D31F332E8700B920DD /* NSAttributedString+JSAttributedString.m */; };
@@ -89,6 +91,10 @@
 		44AC2CEB1F33DF670081041A /* ContactEditAddDataTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactEditAddDataTableViewCell.m; sourceTree = "<group>"; };
 		44AC2CF11F33E23C0081041A /* ContactEditAddDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactEditAddDetailTableViewCell.h; sourceTree = "<group>"; };
 		44AC2CF21F33E23C0081041A /* ContactEditAddDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactEditAddDetailTableViewCell.m; sourceTree = "<group>"; };
+		44D96CF31F3B540100CE1839 /* ContactHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactHistoryViewController.h; sourceTree = "<group>"; };
+		44D96CF41F3B540100CE1839 /* ContactHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactHistoryViewController.m; sourceTree = "<group>"; };
+		44D96CFA1F3B547400CE1839 /* CallHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistoryTableViewCell.h; sourceTree = "<group>"; };
+		44D96CFB1F3B547400CE1839 /* CallHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistoryTableViewCell.m; sourceTree = "<group>"; };
 		8C32C0CB1F332AF400B920DD /* CNContact+JSContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CNContact+JSContact.h"; sourceTree = "<group>"; };
 		8C32C0CC1F332AF400B920DD /* CNContact+JSContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CNContact+JSContact.m"; sourceTree = "<group>"; };
 		8C32C0D21F332E8700B920DD /* NSAttributedString+JSAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JSAttributedString.h"; sourceTree = "<group>"; };
@@ -296,6 +302,25 @@
 			path = ContactEditAddDetailTableViewCell;
 			sourceTree = "<group>";
 		};
+		44D96CF21F3B540100CE1839 /* ContactHistoryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				44D96CF31F3B540100CE1839 /* ContactHistoryViewController.h */,
+				44D96CF41F3B540100CE1839 /* ContactHistoryViewController.m */,
+				44D96CF91F3B547400CE1839 /* CallHistoryTableViewCell */,
+			);
+			path = ContactHistoryViewController;
+			sourceTree = "<group>";
+		};
+		44D96CF91F3B547400CE1839 /* CallHistoryTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				44D96CFA1F3B547400CE1839 /* CallHistoryTableViewCell.h */,
+				44D96CFB1F3B547400CE1839 /* CallHistoryTableViewCell.m */,
+			);
+			path = CallHistoryTableViewCell;
+			sourceTree = "<group>";
+		};
 		8C32C0CA1F332AF400B920DD /* JSContact */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +345,7 @@
 				8C32C0DC1F33570000B920DD /* ContactViewController */,
 				8C32C0D91F33570000B920DD /* ContactDetailViewController */,
 				44429AB41F33ACAD0077D73A /* ContactEditViewController */,
+				44D96CF21F3B540100CE1839 /* ContactHistoryViewController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -634,6 +660,8 @@
 				8CC0C2491F3AC70800567CDE /* JSContactBook.xcdatamodeld in Sources */,
 				4475940F1F3249D300EAFB47 /* AppDelegate.m in Sources */,
 				44AC2CF31F33E23C0081041A /* ContactEditAddDetailTableViewCell.m in Sources */,
+				44D96CF51F3B540100CE1839 /* ContactHistoryViewController.m in Sources */,
+				44D96CFC1F3B547400CE1839 /* CallHistoryTableViewCell.m in Sources */,
 				8C9EAA341F3AF86E00A90C97 /* ContactListCoreDataViewController.m in Sources */,
 				8C32C0E41F33570000B920DD /* ViewController.m in Sources */,
 				44429ABE1F33B3290077D73A /* ContactEditNameImageTableViewCell.m in Sources */,

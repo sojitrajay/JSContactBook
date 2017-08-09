@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int32_t historyId;
 @property (nullable, nonatomic, copy) NSString *oldData;
 @property (nullable, nonatomic, copy) NSString *operation;
-@property (nullable, nonatomic, copy) NSString *updatedData;
+@property (nullable, nonatomic, copy) NSString *contactDisplayName;
 
 @end
 

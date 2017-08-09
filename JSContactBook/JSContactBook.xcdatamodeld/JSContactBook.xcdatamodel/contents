@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="JSContact" representedClassName="JSContact" syncable="YES">
         <attribute name="contactId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactIdntifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="familyName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="givenName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="has_phone_numbers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="JSPhoneNumber" inverseName="belongs_to_contact" inverseEntity="JSPhoneNumber" syncable="YES"/>
     </entity>
     <entity name="JSContactHistory" representedClassName="JSContactHistory" syncable="YES">
+        <attribute name="contactDisplayName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fieldIdentifer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fieldType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="historyId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="oldData" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="operation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="updatedData" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="JSPhoneNumber" representedClassName="JSPhoneNumber" syncable="YES">
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,7 +24,7 @@
         <relationship name="belongs_to_contact" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="JSContact" inverseName="has_phone_numbers" inverseEntity="JSContact" syncable="YES"/>
     </entity>
     <elements>
-        <element name="JSContact" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="JSContact" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="JSContactHistory" positionX="45" positionY="27" width="128" height="150"/>
         <element name="JSPhoneNumber" positionX="153" positionY="-0" width="128" height="105"/>
     </elements>

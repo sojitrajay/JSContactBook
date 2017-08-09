@@ -20,6 +20,6 @@
 @dynamic historyId;
 @dynamic oldData;
 @dynamic operation;
-@dynamic updatedData;
+@dynamic contactDisplayName;
 
 @end
