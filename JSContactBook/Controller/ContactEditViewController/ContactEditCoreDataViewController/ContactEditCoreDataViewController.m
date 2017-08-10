@@ -198,8 +198,6 @@ typedef enum : NSUInteger {
             [cell.buttonDetailType setTitle:phoneNumber.label forState:UIControlStateNormal];
             [cell.buttonDetailType addTarget:self action:@selector(handlerSelectLabelType:) forControlEvents:UIControlEventTouchUpInside];
             
-            [cell.buttonMinus addTarget:self action:@selector(handlerMinus:) forControlEvents:UIControlEventTouchUpInside];
-            
             [cell.textFieldValue setText:phoneNumber.phoneNumber];
             // Add a "textFieldDidChange" notification method to the text field control.
             [cell.textFieldValue addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -290,25 +288,6 @@ typedef enum : NSUInteger {
 - (IBAction)handerDone:(id)sender {
     [self addOrUpdateContactDetails];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)handlerMinus:(UIButton*)sender {
-    
-//    CGPoint textFieldOrigin = [self.tableView convertPoint:sender.bounds.origin fromView:sender];
-//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:textFieldOrigin];
-//    
-//    if (indexPath.section == ContactEditCellTypeCoreDataPhone)
-//    {
-//        if (indexPath.row == self.contact.phoneNumbers.count) {
-//        }
-//        else
-//        {
-//            //            ContactEditAddDetailTableViewCell *cell = (ContactEditAddDetailTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-//            //            [cell setEditing:YES animated:YES];
-//            //            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//        }
-//    }
-    
 }
 
 -(IBAction)handlerSelectLabelType:(UIButton*)sender

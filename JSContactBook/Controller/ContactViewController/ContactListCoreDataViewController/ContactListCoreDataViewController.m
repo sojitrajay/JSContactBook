@@ -137,19 +137,23 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        CNContact *contact = [arrayContact objectAtIndex:indexPath.row];
+        JSContact *contact = [arrayContact objectAtIndex:indexPath.row];
+        NSError *error = nil;
         
-        [[ContactManager sharedContactManager] deleteContact:contact.mutableCopy withCompletion:^(BOOL success, NSError *error) {
-            
+        CNContact *contactCN = [[ContactManager sharedContactManager].store unifiedContactWithIdentifier:contact.contactIdntifier keysToFetch:[ContactManager sharedContactManager].keys error:&error];
+        [[ContactManager sharedContactManager] deleteContact:contactCN.mutableCopy withCompletion:^(BOOL success, NSError *error) {
+
             if (success) {
                 [arrayContact removeObjectAtIndex:indexPath.row];
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                });
+
             }
             else
             {
                 NSLog(@"%@",[error localizedDescription]);
             }
-            
         }];
         
     }
