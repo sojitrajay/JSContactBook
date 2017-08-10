@@ -9,6 +9,7 @@
 #import "ContactHistoryViewController.h"
 #import "CallHistoryTableViewCell.h"
 #import "CoreDataManager.h"
+#import "UIImageView+AGCInitials.h"
 
 @interface ContactHistoryViewController ()
 {
@@ -59,6 +60,9 @@
 
         [cell.imageViewContact.layer setCornerRadius:cell.imageViewContact.frame.size.width/2];
         cell.imageViewContact.clipsToBounds = YES;
+        
+        [cell.imageViewContact agc_setImageWithInitialsFromName:contactHistory.contactDisplayName];
+
         
     }
     
