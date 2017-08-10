@@ -42,6 +42,9 @@ typedef enum : NSUInteger {
     if (self.screenMode == ScreemModeCoreDataAdd) {
         self.contact = [[CoreDataManager sharedCoreData].managedObjectContext insertIntoEntity:NSStringFromClass([JSContact class])];
     }
+    
+    [self.tableView setEditing:YES animated:YES];
+
 }
 
 - (void) dealloc
@@ -111,13 +114,36 @@ typedef enum : NSUInteger {
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == ContactEditCellTypeCoreDataPhone) {
+        return YES;
+    }
     return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
+        JSPhoneNumber *jsPhoneNumber = [self itemAtIndexPath:indexPath];
+        [self.contact removeHas_phone_numbersObject:jsPhoneNumber];
+        [self.tableView reloadData];
+        
     }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == ContactEditCellTypeCoreDataPhone)
+    {
+        if (indexPath.row == self.contact.has_phone_numbers.count) {
+            return UITableViewCellEditingStyleInsert;
+        }
+        else
+        {
+            return UITableViewCellEditingStyleDelete;
+        }
+    }
+    
+    return UITableViewCellEditingStyleNone;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
