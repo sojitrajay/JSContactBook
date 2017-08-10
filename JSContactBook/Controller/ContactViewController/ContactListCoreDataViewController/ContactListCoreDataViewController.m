@@ -12,6 +12,10 @@
 #import "ContactTableViewCell.h"
 #import "UIImageView+AGCInitials.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "ContactDetailCoreDataViewController.h"
+#import "UIImageView+AGCInitials.h"
+
+#define kSegueContactListToCoreDataDetail   @"SegueContactListToCoreDataDetail"
 
 @interface ContactListCoreDataViewController ()
 {
@@ -35,7 +39,7 @@
                                                  name:CNContactStoreDidChangeNotification
                                                object:nil];
     
-    arrayContact = [[CoreDataManager sharedCoreData].managedObjectContext getAllDataForEntity:NSStringFromClass([JSContact class])].mutableCopy;
+    arrayContact = [[[CoreDataManager sharedCoreData].managedObjectContext getAllDataForEntity:NSStringFromClass([JSContact class])] orderby:@"contactIdntifier" acending:YES].mutableCopy;
     [self loadContacts];
     
 }
@@ -55,6 +59,7 @@
     {
         [self.viewNoData setHidden:YES];
     }
+    [self.tableView reloadData];
     
 }
 
@@ -63,10 +68,10 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-//    if ([segue.identifier isEqualToString:kSegueContactListToDetail]) {
-//        ContactDetailViewController *contactDetailVC = [segue destinationViewController];
-//        contactDetailVC.contact = sender;
-//    }
+    if ([segue.identifier isEqualToString:kSegueContactListToCoreDataDetail]) {
+        ContactDetailCoreDataViewController *contactDetailVC = [segue destinationViewController];
+        contactDetailVC.contact = sender;
+    }
     
 }
 
@@ -91,7 +96,7 @@
     if (contact!=nil) {
         
         // Set name
-        [cell.labelContactName setText:[NSString stringWithFormat:@"%@ %@",contact.givenName, contact.familyName]];
+        [cell.labelContactName setAttributedText:contact.displayNameAttributed];
         
         //      Used to display name using CNContactFormatter in application. But it doesn't display same as iOS contact book.
         //        CNContactFormatter *formatter = [[CNContactFormatter alloc] init];
@@ -104,7 +109,7 @@
 //        }
 //        else
 //        {
-//            [cell.imageViewThumbContact agc_setImageWithInitialsFromName:contact.displayName.string];
+            [cell.imageViewThumbContact agc_setImageWithInitialsFromName:contact.displayName];
 //        }
         
         [cell.imageViewThumbContact.layer setCornerRadius:cell.imageViewThumbContact.frame.size.width/2];
@@ -125,8 +130,8 @@
 
 -(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-//    CNContact *contact = [arrayContact objectAtIndex:indexPath.row];
-//    [self performSegueWithIdentifier:kSegueContactListToDetail sender:contact];
+    JSContact *contact = [arrayContact objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:kSegueContactListToCoreDataDetail sender:contact];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateFromContact:(CNContact *)contact withContext:(NSManagedObjectContext*)context;
 
+- (BOOL)compareCNContact:(CNContact*)contact withJSContact:(JSContact*)jsContact forContext:(NSManagedObjectContext*)context;
+
+- (NSAttributedString*)displayNameAttributed;
+
 @end
 
 NS_ASSUME_NONNULL_END

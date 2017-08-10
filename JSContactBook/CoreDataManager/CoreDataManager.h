@@ -10,6 +10,7 @@
 #import "CoreDataConstant.h"
 #import "NSManagedObjectContext+Queryable.h"
 #import "NSManagedObjectContext+QueryType.h"
+#import "NSArray+Uitlity.h"
 
 #import "JSContact+CoreDataClass.h"
 #import "JSPhoneNumber+CoreDataClass.h"
