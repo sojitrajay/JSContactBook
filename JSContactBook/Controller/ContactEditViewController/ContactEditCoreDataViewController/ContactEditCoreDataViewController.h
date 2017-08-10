@@ -23,4 +23,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic) ScreemModeCoreData screenMode;
 
+-(void)addContactNumber:(NSString*)contactNumber;
+
 @end

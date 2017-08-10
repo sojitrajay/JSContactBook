@@ -108,10 +108,10 @@
             </objects>
             <point key="canvasLocation" x="1584.375" y="-2534.1549295774648"/>
         </scene>
-        <!--Item 1-->
+        <!--Contact Add In Existing Contact View Controller-->
         <scene sceneID="4YK-ep-jQh">
             <objects>
-                <viewController id="R5B-wk-lzS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactAddInExistingContactViewController" id="R5B-wk-lzS" customClass="ContactAddInExistingContactViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2LE-oj-FgG"/>
                         <viewControllerLayoutGuide type="bottom" id="7Kv-No-uhz"/>
@@ -119,13 +119,45 @@
                     <view key="view" contentMode="scaleToFill" id="inG-oz-bTL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbI-fL-9Ae">
+                                <rect key="frame" x="49" y="134" width="223" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Glm-fZ-Dhw"/>
+                                </constraints>
+                                <state key="normal" title="Add Contact To Existing Contact"/>
+                                <connections>
+                                    <action selector="handlerAddContact:" destination="R5B-wk-lzS" eventType="touchUpInside" id="MqF-7h-5Ft"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter phone number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tCg-PK-UIa">
+                                <rect key="frame" x="40.5" y="84" width="240" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0OV-EI-MKv"/>
+                                    <constraint firstAttribute="width" constant="240" id="QoC-ZX-ULk"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tCg-PK-UIa" firstAttribute="top" secondItem="2LE-oj-FgG" secondAttribute="bottom" constant="20" id="0lN-JF-BBz"/>
+                            <constraint firstItem="tCg-PK-UIa" firstAttribute="centerX" secondItem="inG-oz-bTL" secondAttribute="centerX" id="PvS-id-lcE"/>
+                            <constraint firstItem="IbI-fL-9Ae" firstAttribute="centerX" secondItem="inG-oz-bTL" secondAttribute="centerX" id="S3h-QN-I4f"/>
+                            <constraint firstItem="IbI-fL-9Ae" firstAttribute="top" secondItem="tCg-PK-UIa" secondAttribute="bottom" constant="20" id="vtk-cp-SQB"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="lDb-qR-ION"/>
+                    <navigationItem key="navigationItem" id="BjC-qM-tg3"/>
+                    <connections>
+                        <outlet property="textFieldPhoneNumber" destination="tCg-PK-UIa" id="f5o-yf-h9K"/>
+                        <segue destination="AAw-3H-cTh" kind="presentation" identifier="addContacToEditContact" id="yoy-wB-zBh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="etP-Ow-jby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1586" y="-3318"/>
+            <point key="canvasLocation" x="2581.875" y="-3319.0140845070423"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Mmn-wa-tgd">
@@ -138,7 +170,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="tMG-RD-ubQ" kind="relationship" relationship="viewControllers" id="VP7-1r-VbV"/>
-                        <segue destination="R5B-wk-lzS" kind="relationship" relationship="viewControllers" id="lnT-mh-wNu"/>
+                        <segue destination="DcP-Nf-wPL" kind="relationship" relationship="viewControllers" id="lnT-mh-wNu"/>
                         <segue destination="dMp-a0-SkZ" kind="relationship" relationship="viewControllers" id="voF-k1-Zz1"/>
                     </connections>
                 </tabBarController>
@@ -842,7 +874,7 @@
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twz-jN-DGn">
                                                     <rect key="frame" x="41" y="0.0" width="80" height="43.5"/>
@@ -1089,7 +1121,7 @@
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9N-yQ-ZpQ">
                                                     <rect key="frame" x="41" y="0.0" width="80" height="43.5"/>
@@ -1199,7 +1231,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ilf-SK-IkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="499" y="-557"/>
+            <point key="canvasLocation" x="844" y="-558"/>
         </scene>
         <!--Contact List-->
         <scene sceneID="47o-qt-Q26">
@@ -1221,6 +1253,25 @@
             </objects>
             <point key="canvasLocation" x="1584" y="-1588"/>
         </scene>
+        <!--Add Contact-->
+        <scene sceneID="pnJ-nI-Sf4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DcP-Nf-wPL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Add Contact" id="lDb-qR-ION"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YKH-AB-SQD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="R5B-wk-lzS" kind="relationship" relationship="rootViewController" id="Qkl-hH-TUO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e3e-KZ-s0U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1584.375" y="-3319.0140845070423"/>
+        </scene>
     </scenes>
     <resources>
         <image name="add" width="25" height="25"/>
@@ -1230,5 +1281,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zhe-91-52O"/>
+        <segue reference="yoy-wB-zBh"/>
     </inferredMetricsTieBreakers>
 </document>

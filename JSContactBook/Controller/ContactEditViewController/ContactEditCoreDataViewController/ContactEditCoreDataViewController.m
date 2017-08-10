@@ -242,11 +242,7 @@ typedef enum : NSUInteger {
     {
         if (indexPath.row == self.contact.has_phone_numbers.count) {
             
-            JSPhoneNumber *jsPhoneNumber = [[CoreDataManager sharedCoreData].managedObjectContext insertIntoEntity:NSStringFromClass([JSPhoneNumber class])];
-            jsPhoneNumber.label = [CNLabeledValue localizedStringForLabel:CNLabelHome];
-            jsPhoneNumber.phoneNumber = @"";
-            jsPhoneNumber.belongs_to_contact = self.contact;
-            [self.tableView reloadData];
+            [self addContactNumber:@""];
 
         }
         else
@@ -468,6 +464,15 @@ typedef enum : NSUInteger {
     }
     
 
+}
+
+-(void)addContactNumber:(NSString*)contactNumber
+{
+    JSPhoneNumber *jsPhoneNumber = [[CoreDataManager sharedCoreData].managedObjectContext insertIntoEntity:NSStringFromClass([JSPhoneNumber class])];
+    jsPhoneNumber.label = [CNLabeledValue localizedStringForLabel:CNLabelHome];
+    jsPhoneNumber.phoneNumber = contactNumber;
+    jsPhoneNumber.belongs_to_contact = self.contact;
+    [self.tableView reloadData];
 }
 
 @end

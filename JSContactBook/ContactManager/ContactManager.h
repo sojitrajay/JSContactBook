@@ -12,6 +12,7 @@
 #import <Contacts/CNContact.h>
 #import <Contacts/CNContactFetchRequest.h>
 #import <ContactsUI/CNContactViewController.h>
+#import <ContactsUI/ContactsUI.h>
 
 #import "CNContact+JSContact.h"
 
