@@ -35,8 +35,8 @@ typedef enum : NSUInteger {
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(cnContactStoreDidChange:)
-                                                 name:CNContactStoreDidChangeNotification
+                                             selector:@selector(contactsUpdateNotification:)
+                                                 name:kNotificationContactsUpdated
                                                object:nil];
     
     if (self.screenMode == ScreemModeCoreDataAdd) {
@@ -46,7 +46,7 @@ typedef enum : NSUInteger {
 
 - (void) dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:CNContactStoreDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationContactsUpdated object:nil];
 }
 
 #pragma mark - Table View Data Source Methods
@@ -328,12 +328,16 @@ typedef enum : NSUInteger {
 
 #pragma mark - Notification
 
--(IBAction)cnContactStoreDidChange:(id)sender
+-(IBAction)contactsUpdateNotification:(id)sender
 {
-//    self.contact = [[ContactManager sharedContactManager].store unifiedContactWithIdentifier:self.contact.identifier keysToFetch:[ContactManager sharedContactManager].keys error:nil].mutableCopy;
+    id contactCurrent = [[CoreDataManager sharedCoreData].managedObjectContext getDataForEntity:NSStringFromClass([JSContact class]) Where:@"contactIdntifier = %@",self.contact.contactIdntifier].firstObject;
+    if (contactCurrent!=nil) {
+        self.contact = contactCurrent;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
+    
 }
 
 #pragma mark - Text Field Delgate Method

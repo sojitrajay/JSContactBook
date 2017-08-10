@@ -10,6 +10,7 @@
 #import "CallHistoryTableViewCell.h"
 #import "CoreDataManager.h"
 #import "UIImageView+AGCInitials.h"
+#import "ContactManager.h"
 
 @interface ContactHistoryViewController ()
 {
@@ -25,18 +26,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(contactsUpdateNotification:)
+                                                 name:kNotificationContactsUpdated
+                                               object:nil];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    arrayContact = [[CoreDataManager sharedCoreData].managedObjectContext getAllDataForEntity:NSStringFromClass([JSContactHistory class])].mutableCopy;
-    [self.tableView reloadData];
+    [self loadHistory];
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationContactsUpdated object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Load History
+
+-(void)loadHistory
+{
+    arrayContact = [[CoreDataManager sharedCoreData].managedObjectContext getAllDataForEntity:NSStringFromClass([JSContactHistory class])].mutableCopy;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark - Table View Data Source Methods
@@ -71,5 +92,11 @@
     return cell;
 }
 
+#pragma mark - Notification
+
+-(IBAction)contactsUpdateNotification:(id)sender
+{
+    [self loadHistory];
+}
 
 @end

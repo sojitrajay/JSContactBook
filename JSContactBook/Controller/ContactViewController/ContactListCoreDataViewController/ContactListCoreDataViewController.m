@@ -159,7 +159,6 @@
 
 -(void)loadContacts
 {
-    
     [[ContactManager sharedContactManager] requestContactManagerWithCompletion:^(BOOL success, NSError *error) {
         if (success) {
             if (arrayContact.count<=0) {
@@ -174,6 +173,9 @@
                     [self.tableView reloadData];
                     [SVProgressHUD dismiss];
                 });
+                
+                // All instances of TestClass will be notified
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationContactsUpdated object:self];
 
             }];
             

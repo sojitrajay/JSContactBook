@@ -38,8 +38,8 @@ typedef enum : NSUInteger {
     // Do any additional setup after loading the view.
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(cnContactStoreDidChange:)
-                                                 name:CNContactStoreDidChangeNotification
+                                             selector:@selector(contactsUpdateNotification:)
+                                                 name:kNotificationContactsUpdated
                                                object:nil];
 }
 
@@ -51,7 +51,7 @@ typedef enum : NSUInteger {
 
 - (void) dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:CNContactStoreDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationContactsUpdated object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -214,9 +214,16 @@ typedef enum : NSUInteger {
 
 #pragma mark - Notification
 
--(IBAction)cnContactStoreDidChange:(id)sender
+-(IBAction)contactsUpdateNotification:(id)sender
 {
-    [self.tableView reloadData];
+    id contactCurrent = [[CoreDataManager sharedCoreData].managedObjectContext getDataForEntity:NSStringFromClass([JSContact class]) Where:@"contactIdntifier = %@",self.contact.contactIdntifier].firstObject;
+    if (contactCurrent!=nil) {
+        self.contact = contactCurrent;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+
 }
 
 @end

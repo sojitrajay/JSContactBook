@@ -18,6 +18,8 @@
 
 #import "CoreDataManager.h"
 
+#define kNotificationContactsUpdated    @"ContactsUpdated"
+
 typedef void (^JSContactManagerCompletion)(BOOL success, NSError *error);
 typedef void (^JSContactManagerFetchContactsCompletion)(NSArray *arrayContacts, NSError *error);
 typedef void (^JSContactManagerUpdateContactsCompletion)(BOOL success, NSError *error);
