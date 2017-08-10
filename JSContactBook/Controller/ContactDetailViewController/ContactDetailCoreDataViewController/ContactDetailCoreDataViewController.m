@@ -12,6 +12,7 @@
 #import "CoreDataManager.h"
 #import "UIImageView+AGCInitials.h"
 #import "ContactEditCoreDataViewController.h"
+#import "ContactManager.h"
 
 typedef enum : NSUInteger {
     ContactCellTypeCoreDataImage = 0,
@@ -35,12 +36,22 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cnContactStoreDidChange:)
+                                                 name:CNContactStoreDidChangeNotification
+                                               object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CNContactStoreDidChangeNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -199,6 +210,13 @@ typedef enum : NSUInteger {
 - (IBAction)handlerEdit:(id)sender {
     
     [self performSegueWithIdentifier:kSegueContactDetailToEdit sender:self.contact];
+}
+
+#pragma mark - Notification
+
+-(IBAction)cnContactStoreDidChange:(id)sender
+{
+    [self.tableView reloadData];
 }
 
 @end

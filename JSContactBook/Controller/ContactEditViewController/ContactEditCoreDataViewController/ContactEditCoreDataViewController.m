@@ -331,9 +331,9 @@ typedef enum : NSUInteger {
 -(IBAction)cnContactStoreDidChange:(id)sender
 {
 //    self.contact = [[ContactManager sharedContactManager].store unifiedContactWithIdentifier:self.contact.identifier keysToFetch:[ContactManager sharedContactManager].keys error:nil].mutableCopy;
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self.tableView reloadData];
-//    });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark - Text Field Delgate Method
