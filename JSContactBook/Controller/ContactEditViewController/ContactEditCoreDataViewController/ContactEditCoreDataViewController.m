@@ -402,13 +402,25 @@ typedef enum : NSUInteger {
         CNMutableContact *mutableContact = [[ContactManager sharedContactManager].store unifiedContactWithIdentifier:self.contact.contactIdntifier keysToFetch:[ContactManager sharedContactManager].keys error:&error].mutableCopy;
         
         NSInteger count = [[CoreDataManager sharedCoreData].managedObjectContext getAllDataForEntity:NSStringFromClass([JSContactHistory class])].count;
-        if ([self.contact compareCNContact:mutableContact withJSContact:self.contact forContext:[CoreDataManager sharedCoreData].managedObjectContext]) {
+        if (mutableContact==nil) {
+            mutableContact = [[CNMutableContact alloc] init];
             JSContactHistory *conactEntity = [[CoreDataManager sharedCoreData].managedObjectContext insertIntoEntity:NSStringFromClass([JSContactHistory class])];
             conactEntity.historyId = (int32_t)count+1;
             conactEntity.contactId = mutableContact.identifier;
-            conactEntity.operation = kContactOperationUpdated;
+            conactEntity.operation = kContactOperationAdd;
             conactEntity.fieldType = kFieldTypeContact;
             conactEntity.contactDisplayName = mutableContact.displayName.string;
+        }
+        else
+        {
+            if ([self.contact compareCNContact:mutableContact withJSContact:self.contact forContext:[CoreDataManager sharedCoreData].managedObjectContext]) {
+                JSContactHistory *conactEntity = [[CoreDataManager sharedCoreData].managedObjectContext insertIntoEntity:NSStringFromClass([JSContactHistory class])];
+                conactEntity.historyId = (int32_t)count+1;
+                conactEntity.contactId = mutableContact.identifier;
+                conactEntity.operation = kContactOperationUpdated;
+                conactEntity.fieldType = kFieldTypeContact;
+                conactEntity.contactDisplayName = mutableContact.displayName.string;
+            }
         }
         
         if (ContactEditCellTypeCoreDataCount>0)
@@ -455,6 +467,9 @@ typedef enum : NSUInteger {
             [[ContactManager sharedContactManager] addOrUpdateContact:mutableContact withCompletion:^(BOOL success, NSError *error) {
                 if (success) {
                     NSLog(@"Contact updated successfully.");
+                    
+                    self.contact.contactIdntifier = mutableContact.identifier;
+                    
                     // Save managed object in database.
                     if ([[CoreDataManager sharedCoreData].managedObjectContext hasChanges]) {
                         if (![[CoreDataManager sharedCoreData].managedObjectContext save:&error]) {
@@ -480,8 +495,10 @@ typedef enum : NSUInteger {
     JSPhoneNumber *jsPhoneNumber = [[CoreDataManager sharedCoreData].managedObjectContext insertIntoEntity:NSStringFromClass([JSPhoneNumber class])];
     jsPhoneNumber.label = [CNLabeledValue localizedStringForLabel:CNLabelHome];
     jsPhoneNumber.phoneNumber = contactNumber;
-    jsPhoneNumber.belongs_to_contact = self.contact;
-    [self.tableView reloadData];
+    [self.contact addHas_phone_numbersObject:jsPhoneNumber];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 @end

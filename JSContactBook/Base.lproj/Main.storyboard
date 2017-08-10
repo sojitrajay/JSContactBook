@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--History-->
+        <!--Contact History-->
         <scene sceneID="K9I-34-W3o">
             <objects>
                 <viewController storyboardIdentifier="ContactHistoryViewController" id="dMp-a0-SkZ" customClass="ContactHistoryViewController" sceneMemberID="viewController">
@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="IuE-cr-mXU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZWC-ww-J31">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t9r-12-XTY">
-                                <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CallHistoryTableViewCell" id="3Mi-03-Qyl" customClass="CallHistoryTableViewCell">
@@ -99,16 +99,16 @@
                             <constraint firstItem="t9r-12-XTY" firstAttribute="leading" secondItem="ZWC-ww-J31" secondAttribute="leading" id="qRP-qn-LNi"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="History" id="3ur-OZ-gb5"/>
+                    <navigationItem key="navigationItem" title="Contact History" id="k2o-rn-yMs"/>
                     <connections>
                         <outlet property="tableView" destination="t9r-12-XTY" id="K2X-wh-w8Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wux-Va-Yqn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1584.375" y="-2534.1549295774648"/>
+            <point key="canvasLocation" x="2582" y="-2534"/>
         </scene>
-        <!--Contact Add In Existing Contact View Controller-->
+        <!--Add Phone No. To Existing Contact-->
         <scene sceneID="4YK-ep-jQh">
             <objects>
                 <viewController storyboardIdentifier="ContactAddInExistingContactViewController" id="R5B-wk-lzS" customClass="ContactAddInExistingContactViewController" sceneMemberID="viewController">
@@ -121,11 +121,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbI-fL-9Ae">
-                                <rect key="frame" x="49" y="134" width="223" height="30"/>
+                                <rect key="frame" x="40" y="134" width="240" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Glm-fZ-Dhw"/>
                                 </constraints>
-                                <state key="normal" title="Add Contact To Existing Contact"/>
+                                <state key="normal" title="Add Phone No. To Existing Contact"/>
                                 <connections>
                                     <action selector="handlerAddContact:" destination="R5B-wk-lzS" eventType="touchUpInside" id="MqF-7h-5Ft"/>
                                 </connections>
@@ -149,7 +149,7 @@
                             <constraint firstItem="IbI-fL-9Ae" firstAttribute="top" secondItem="tCg-PK-UIa" secondAttribute="bottom" constant="20" id="vtk-cp-SQB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="BjC-qM-tg3"/>
+                    <navigationItem key="navigationItem" title="Add Phone No. To Existing Contact" id="BjC-qM-tg3"/>
                     <connections>
                         <outlet property="textFieldPhoneNumber" destination="tCg-PK-UIa" id="f5o-yf-h9K"/>
                         <segue destination="AAw-3H-cTh" kind="presentation" identifier="addContacToEditContact" id="yoy-wB-zBh"/>
@@ -171,14 +171,14 @@
                     <connections>
                         <segue destination="tMG-RD-ubQ" kind="relationship" relationship="viewControllers" id="VP7-1r-VbV"/>
                         <segue destination="DcP-Nf-wPL" kind="relationship" relationship="viewControllers" id="lnT-mh-wNu"/>
-                        <segue destination="dMp-a0-SkZ" kind="relationship" relationship="viewControllers" id="voF-k1-Zz1"/>
+                        <segue destination="NhI-xo-QTI" kind="relationship" relationship="viewControllers" id="voF-k1-Zz1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Nm-rC-iWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="499" y="-2534"/>
         </scene>
-        <!--Contact List Core Data View Controller-->
+        <!--Contacts-->
         <scene sceneID="fSO-d6-t2P">
             <objects>
                 <viewController storyboardIdentifier="ContactListCoreDataViewController" id="QAW-U3-CAd" customClass="ContactListCoreDataViewController" sceneMemberID="viewController">
@@ -191,7 +191,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="r5I-XC-SOQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactTableViewCell" id="5et-y8-o6N" customClass="ContactTableViewCell">
@@ -238,10 +238,10 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="diP-Fi-lze">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please provide access to contact from settings to use the application." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zT-os-4Rw">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -268,7 +268,15 @@
                             <constraint firstItem="fDu-ha-OUk" firstAttribute="top" secondItem="r5I-XC-SOQ" secondAttribute="bottom" id="wpd-LH-u5u"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="U6p-5t-UVm"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Contacts" id="U6p-5t-UVm">
+                        <barButtonItem key="rightBarButtonItem" image="add" id="mtG-hS-BcR">
+                            <connections>
+                                <segue destination="AAw-3H-cTh" kind="presentation" identifier="segueAddContact" id="JLV-Vi-2PB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="r5I-XC-SOQ" id="g1m-wv-0pe"/>
                         <outlet property="viewNoData" destination="diP-Fi-lze" id="0cr-EV-F7o"/>
@@ -553,7 +561,7 @@
             </objects>
             <point key="canvasLocation" x="2441" y="-203"/>
         </scene>
-        <!--Contact Detail Core Data View Controller-->
+        <!--Contact Detail-->
         <scene sceneID="TY9-Eq-8ev">
             <objects>
                 <viewController storyboardIdentifier="ContactDetailCoreDataViewController" id="iBE-He-jwu" customClass="ContactDetailCoreDataViewController" sceneMemberID="viewController">
@@ -566,7 +574,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HnK-Th-0r3">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactTitleAndDetailTableViewCell" rowHeight="62" id="Eqh-2f-3PZ" customClass="ContactTitleAndDetailTableViewCell">
@@ -703,7 +711,7 @@
                             <constraint firstItem="HnK-Th-0r3" firstAttribute="leading" secondItem="cE4-e2-kTu" secondAttribute="leading" id="hhX-9F-xEp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="33Z-Jw-yLN">
+                    <navigationItem key="navigationItem" title="Contact Detail" id="33Z-Jw-yLN">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="OOu-P1-XVa">
                             <connections>
                                 <action selector="handlerEdit:" destination="iBE-He-jwu" id="sFm-4E-D0H"/>
@@ -1249,6 +1257,26 @@
             </objects>
             <point key="canvasLocation" x="1584.375" y="-3319.0140845070423"/>
         </scene>
+        <!--History-->
+        <scene sceneID="VM3-O4-leR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NhI-xo-QTI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="History" id="3ur-OZ-gb5"/>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3Pc-vc-Osh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dMp-a0-SkZ" kind="relationship" relationship="rootViewController" id="3UU-p0-lL3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fdm-QC-P62" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1584.375" y="-2534.1549295774648"/>
+        </scene>
     </scenes>
     <resources>
         <image name="add" width="25" height="25"/>
@@ -1257,7 +1285,7 @@
         <image name="right_arrow" width="7" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zhe-91-52O"/>
-        <segue reference="GZZ-3e-wba"/>
+        <segue reference="cB8-wZ-LEt"/>
+        <segue reference="yoy-wB-zBh"/>
     </inferredMetricsTieBreakers>
 </document>
