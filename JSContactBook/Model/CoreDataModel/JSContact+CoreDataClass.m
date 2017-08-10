@@ -96,19 +96,32 @@
         return YES;
     }
     
+    // Check for the new contact.
     __block BOOL isUpdatedPhoneNumber = NO;
-    [jsContact.has_phone_numbers enumerateObjectsUsingBlock:^(JSPhoneNumber * _Nonnull obj, BOOL * _Nonnull stop) {
-        CNLabeledValue<CNPhoneNumber*> *phoneNumber = [contact.phoneNumbers where:@"identifier = %@",obj.phoneNumberIdentifier].firstObject;
-        CNPhoneNumber *number = phoneNumber.value;
-        NSString *label = [CNLabeledValue localizedStringForLabel:phoneNumber.label];
+
+    [contact.phoneNumbers enumerateObjectsUsingBlock:^(CNLabeledValue<CNPhoneNumber *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+
+        if ([jsContact.has_phone_numbers.allObjects where:@"phoneNumberIdentifier = %@",obj.identifier].count<=0) {
+            isUpdatedPhoneNumber = YES;
+        }
         
-        if (![obj.label isEqualToString:label]) {
-            isUpdatedPhoneNumber = YES;
-        }
-        if (![obj.phoneNumber isEqualToString:number.stringValue]) {
-            isUpdatedPhoneNumber = YES;
-        }
     }];
+    
+    if (!isUpdatedPhoneNumber) {
+        [jsContact.has_phone_numbers enumerateObjectsUsingBlock:^(JSPhoneNumber * _Nonnull obj, BOOL * _Nonnull stop) {
+            CNLabeledValue<CNPhoneNumber*> *phoneNumber = [contact.phoneNumbers where:@"identifier = %@",obj.phoneNumberIdentifier].firstObject;
+            CNPhoneNumber *number = phoneNumber.value;
+            NSString *label = [CNLabeledValue localizedStringForLabel:phoneNumber.label];
+            
+            if (![obj.label isEqualToString:label]) {
+                isUpdatedPhoneNumber = YES;
+            }
+            if (![obj.phoneNumber isEqualToString:number.stringValue]) {
+                isUpdatedPhoneNumber = YES;
+            }
+        }];
+
+    }
     
     return isUpdatedPhoneNumber;
 }
