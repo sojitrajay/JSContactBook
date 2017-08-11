@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CXk-BT-C3l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CXk-BT-C3l">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -857,7 +857,7 @@
                                             <outlet property="labelTitle" destination="KVH-Tc-ISc" id="oAZ-FC-hLE"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactEditAddDetailTableViewCell" id="slq-9Q-Drs" customClass="ContactEditAddDetailTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ContactEditAddDetailTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactEditAddDetailTableViewCell" id="slq-9Q-Drs" customClass="ContactEditAddDetailTableViewCell">
                                         <rect key="frame" x="0.0" y="156" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="slq-9Q-Drs" id="e6f-2f-DGk">
@@ -865,10 +865,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aw8-Gt-83u">
-                                                    <rect key="frame" x="97" y="12" width="215" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="tzl-QZ-AYr"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="97" y="0.0" width="215" height="43.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
@@ -882,7 +879,7 @@
                                                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                                     <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="iPhone">
+                                                    <state key="normal">
                                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
@@ -914,7 +911,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="twz-jN-DGn" secondAttribute="bottom" id="c4q-eO-fNL"/>
                                                 <constraint firstItem="ape-As-tj0" firstAttribute="top" secondItem="e6f-2f-DGk" secondAttribute="top" id="gjA-Oz-8FQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="ape-As-tj0" secondAttribute="bottom" id="jwp-Ie-e16"/>
+                                                <constraint firstAttribute="bottom" secondItem="aw8-Gt-83u" secondAttribute="bottom" id="nFQ-LC-bUq"/>
                                                 <constraint firstAttribute="trailing" secondItem="aw8-Gt-83u" secondAttribute="trailing" constant="8" id="w8e-h2-rSy"/>
+                                                <constraint firstItem="aw8-Gt-83u" firstAttribute="top" secondItem="e6f-2f-DGk" secondAttribute="top" id="zkU-oT-zRx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1218,11 +1217,11 @@
             </objects>
             <point key="canvasLocation" x="844" y="-558"/>
         </scene>
-        <!--Contact List-->
+        <!--Contact Book-->
         <scene sceneID="47o-qt-Q26">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tMG-RD-ubQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contact List" id="bKP-xi-0cW"/>
+                    <tabBarItem key="tabBarItem" title="Contact Book" image="contact_book" id="bKP-xi-0cW"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Lx8-2y-mfX">
@@ -1242,7 +1241,7 @@
         <scene sceneID="pnJ-nI-Sf4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DcP-Nf-wPL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Add Contact" id="lDb-qR-ION"/>
+                    <tabBarItem key="tabBarItem" title="Add Contact" image="add_contact" id="lDb-qR-ION"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YKH-AB-SQD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1261,7 +1260,7 @@
         <scene sceneID="VM3-O4-leR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NhI-xo-QTI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="History" id="3ur-OZ-gb5"/>
+                    <tabBarItem key="tabBarItem" title="History" image="history" id="3ur-OZ-gb5"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3Pc-vc-Osh">
@@ -1280,6 +1279,9 @@
     </scenes>
     <resources>
         <image name="add" width="25" height="25"/>
+        <image name="add_contact" width="25" height="25"/>
+        <image name="contact_book" width="25" height="25"/>
+        <image name="history" width="25" height="25"/>
         <image name="plus" width="25" height="25"/>
         <image name="remove" width="25" height="25"/>
         <image name="right_arrow" width="7" height="12"/>

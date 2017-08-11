@@ -64,6 +64,11 @@
     }
     else{
         UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Warning." message:@"Please enter phone number." preferredStyle:UIAlertControllerStyleAlert];
+        
+        [controller addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        
         [self presentViewController:controller animated:YES completion:nil];
     }
     
@@ -71,7 +76,7 @@
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact
 {
-    [self dismissViewControllerAnimated:picker completion:^{
+    [self dismissViewControllerAnimated:YES completion:^{
         [self performSegueWithIdentifier:kSegueAddContacToEditContact sender:contact];
         self.textFieldPhoneNumber.text = @"";
     }];

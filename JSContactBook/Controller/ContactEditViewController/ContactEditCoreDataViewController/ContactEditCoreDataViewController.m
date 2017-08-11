@@ -26,7 +26,9 @@ typedef enum : NSUInteger {
 } ContactEditCellTypeCoreData;
 
 @interface ContactEditCoreDataViewController ()
-
+{
+    NSMutableArray *arrayPhoneNumbers;
+}
 @end
 
 @implementation ContactEditCoreDataViewController
@@ -43,6 +45,7 @@ typedef enum : NSUInteger {
         self.contact = [[CoreDataManager sharedCoreData].managedObjectContext insertIntoEntity:NSStringFromClass([JSContact class])];
     }
     
+    arrayPhoneNumbers = [self.contact.has_phone_numbers.allObjects orderby:@"phoneNumberIdentifier" acending:YES].mutableCopy;
     [self.tableView setEditing:YES animated:YES];
 
 }
@@ -122,11 +125,20 @@ typedef enum : NSUInteger {
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
         JSPhoneNumber *jsPhoneNumber = [self itemAtIndexPath:indexPath];
         [self.contact removeHas_phone_numbersObject:jsPhoneNumber];
         [self.tableView reloadData];
-        
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        if (indexPath.section == ContactEditCellTypeCoreDataPhone && indexPath.row == self.contact.has_phone_numbers.count)
+        {
+            [self addContactNumber:@""];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView beginUpdates];
+                [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:(self.contact.has_phone_numbers.count -1) inSection:ContactEditCellTypeCoreDataPhone]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView endUpdates];
+            });
+        }
     }
 }
 
@@ -267,13 +279,14 @@ typedef enum : NSUInteger {
         if (indexPath.row == self.contact.has_phone_numbers.count) {
             
             [self addContactNumber:@""];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView beginUpdates];
+                [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:(self.contact.has_phone_numbers.count -1) inSection:ContactEditCellTypeCoreDataPhone]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView endUpdates];
+            });
 
         }
-        else
-        {
-        }
     }
-    
 }
 
 #pragma mark - Button Event
@@ -363,9 +376,9 @@ typedef enum : NSUInteger {
         
         JSPhoneNumber *phoneNumber = [self itemAtIndexPath:indexPath];
         
-        ContactEditAddDetailTableViewCell *cell = (ContactEditAddDetailTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactEditAddDetailTableViewCell class]) forIndexPath:indexPath];
+        ContactEditAddDetailTableViewCell *cell = (ContactEditAddDetailTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         
-        phoneNumber.label = cell.buttonDetailType.titleLabel.text;
+        phoneNumber.label = cell.buttonDetailType.currentTitle;
         phoneNumber.phoneNumber = textField.text;
         
     }
@@ -376,7 +389,7 @@ typedef enum : NSUInteger {
 -(id)itemAtIndexPath:(NSIndexPath*)indexPath
 {
     if (indexPath.section == ContactEditCellTypeCoreDataPhone) {
-        JSPhoneNumber *arrayPhonenumbers = [[self.contact.has_phone_numbers.allObjects orderby:@"phoneNumberIdentifier" acending:YES] objectAtIndex:indexPath.row];
+        JSPhoneNumber *arrayPhonenumbers = [arrayPhoneNumbers objectAtIndex:indexPath.row];
         return arrayPhonenumbers;
         
     }
@@ -484,10 +497,7 @@ typedef enum : NSUInteger {
                 }
             }];
         }
-
     }
-    
-
 }
 
 -(void)addContactNumber:(NSString*)contactNumber
@@ -495,10 +505,10 @@ typedef enum : NSUInteger {
     JSPhoneNumber *jsPhoneNumber = [[CoreDataManager sharedCoreData].managedObjectContext insertIntoEntity:NSStringFromClass([JSPhoneNumber class])];
     jsPhoneNumber.label = [CNLabeledValue localizedStringForLabel:CNLabelHome];
     jsPhoneNumber.phoneNumber = contactNumber;
-    [self.contact addHas_phone_numbersObject:jsPhoneNumber];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
+    jsPhoneNumber.belongs_to_contact = self.contact;
+    
+    arrayPhoneNumbers = (arrayPhoneNumbers == nil)?[[NSMutableArray alloc] init]:arrayPhoneNumbers;
+    [arrayPhoneNumbers addObject:jsPhoneNumber];
 }
 
 @end
