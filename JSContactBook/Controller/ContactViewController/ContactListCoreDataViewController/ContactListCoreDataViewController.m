@@ -168,6 +168,8 @@
             if (arrayContact.count<=0) {
                 [SVProgressHUD show];
             }
+
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             [[ContactManager sharedContactManager] fetchContactsWithCompletion:^(NSArray *arrayContacts, NSError *error) {
                 
                 arrayContact = [[CoreDataManager sharedCoreData].managedObjectContext getAllDataForEntity:NSStringFromClass([JSContact class])].mutableCopy;
@@ -176,6 +178,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                     [SVProgressHUD dismiss];
+                    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                 });
                 
                 // All instances of TestClass will be notified

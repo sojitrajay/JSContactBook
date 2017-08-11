@@ -270,4 +270,27 @@
     return *error ? NO : YES;
 }
 
+/***
+ * Add dummy contacts
+ */
+
+- (void)addDummyContacts
+{
+    for (int i = 0; i<300; i++) {
+        CNMutableContact *mutableContact = [[CNMutableContact alloc] init];
+        
+        mutableContact.givenName    = [NSString stringWithFormat:@"Contact"];
+        mutableContact.familyName   = [NSString stringWithFormat:@"%d",i];;
+        CNPhoneNumber * phone =[CNPhoneNumber phoneNumberWithStringValue:@"9999999"];
+        CNLabeledValue *phoneNumber = [CNLabeledValue labeledValueWithLabel:CNLabelHome value:phone];
+        NSMutableArray *arrayPhoneNumber = [[NSMutableArray alloc] init];
+        [arrayPhoneNumber addObject:phoneNumber];
+        mutableContact.phoneNumbers = [arrayPhoneNumber mutableCopy];
+        [self addOrUpdateContact:mutableContact withCompletion:^(BOOL success, NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
+        }];
+        
+    }
+}
+
 @end

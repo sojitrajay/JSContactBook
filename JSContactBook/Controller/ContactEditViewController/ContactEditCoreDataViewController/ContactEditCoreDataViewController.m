@@ -300,7 +300,6 @@ typedef enum : NSUInteger {
 
 - (IBAction)handerDone:(id)sender {
     [self addOrUpdateContactDetails];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(IBAction)handlerSelectLabelType:(UIButton*)sender
@@ -422,6 +421,9 @@ typedef enum : NSUInteger {
             conactEntity.contactId = mutableContact.identifier;
             conactEntity.operation = kContactOperationAdd;
             conactEntity.fieldType = kFieldTypeContact;
+            ContactEditNameImageTableViewCell *cell = (ContactEditNameImageTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:ContactEditCellTypeCoreDataImage]];
+            mutableContact.givenName    = cell.textFieldFirstName.text;
+            mutableContact.familyName   = cell.textFieldLastName.text;
             conactEntity.contactDisplayName = mutableContact.displayName.string;
         }
         else
@@ -478,6 +480,11 @@ typedef enum : NSUInteger {
             }
             
             [[ContactManager sharedContactManager] addOrUpdateContact:mutableContact withCompletion:^(BOOL success, NSError *error) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                });
+                
                 if (success) {
                     NSLog(@"Contact updated successfully.");
                     
@@ -495,6 +502,7 @@ typedef enum : NSUInteger {
                 {
                     NSLog(@"%@",[error localizedDescription]);
                 }
+                
             }];
         }
     }

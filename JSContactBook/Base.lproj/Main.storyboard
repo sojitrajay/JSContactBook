@@ -1287,7 +1287,7 @@
         <image name="right_arrow" width="7" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="JLV-Vi-2PB"/>
         <segue reference="cB8-wZ-LEt"/>
-        <segue reference="yoy-wB-zBh"/>
     </inferredMetricsTieBreakers>
 </document>

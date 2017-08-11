@@ -47,4 +47,6 @@ typedef void (^JSContactManagerUpdateContactsCompletion)(BOOL success, NSError *
 
 - (BOOL)checkIfContactExist:(CNContact*)contact;
 
+- (void)addDummyContacts;
+
 @end

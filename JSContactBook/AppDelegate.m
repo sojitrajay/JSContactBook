@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "IQKeyboardManager.h"
+#import "ContactManager.h"
 
 @interface AppDelegate ()
 
@@ -20,7 +21,8 @@
     // Override point for customization after application launch.
     
     [[IQKeyboardManager sharedManager] setEnable:YES];
-
+    // [[ContactManager sharedContactManager] addDummyContacts];
+    
     return YES;
 }
 
